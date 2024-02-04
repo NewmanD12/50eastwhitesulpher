@@ -108,7 +108,7 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
-              textDecoration: 'none', 
+              textDecoration: 'none',
             }}
           >
             <img src='https://50eastwv.com/wp-content/uploads/2021/06/50-east-logo-2-768x461.png' id='compressed-logo'></img>
