@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -14,27 +15,24 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import './ResponsiveAppBar.css'
 
-const pages = ["About", "Menu", "Gallery", "Events", "Our Venders", "Contact"];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ["About", "Menu", "Gallery", "Local Farmers", "Contact"];
 
 function ResponsiveAppBar() {
+  const navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  const changePage = (page) => {
+    const convertedPage = page.toLowerCase().replaceAll(' ', '')
+    navigate(`/${convertedPage}`)
+  }
 
   return (
     <AppBar position="static">
@@ -97,7 +95,7 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
           <Typography
-            variant="h5"
+            variant="h1"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
@@ -111,48 +109,22 @@ function ResponsiveAppBar() {
               textDecoration: 'none', 
             }}
           >
-            <img src='https://50eastwv.com/wp-content/uploads/2021/06/50-east-logo-2-768x461.png' id='compressed-logo'></img>
           </Typography>
+          <img src='https://50eastwv.com/wp-content/uploads/2021/06/50-east-logo-2-768x461.png' id='compressed-logo'></img>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={(e) => {
+                    changePage(page)
+                    handleCloseNavMenu
+                }
+                }
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
               </Button>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
