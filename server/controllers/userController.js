@@ -43,7 +43,48 @@ async function createUser(req, res) {
     }
 }
 
+const login = async (req, res) => {
+    try {
+        const { userName, password} = req.body;
+        const user = await User.findOne({userName : userName})
+
+        if(!user){
+            res.json({
+                success : false,
+                message : 'Could not find user'
+            }).status(204)
+        }
+
+        const isPWValid = await validatePW(password, user.password)
+
+        if (!isPWValid) {
+            res
+            .json({ success: false, message: "Password was incorrect." })
+            .status(204);
+            return;
+        }
+
+        const userData = {
+            userName : user.userName,
+        }
+
+        const token = generateUserToken(userData)
+        res.json({
+            success : true,
+            userID : user._id,
+            userName : user.userName,
+            token
+        })
+    } catch (error) {
+        res.json({
+            success : false,
+            error : error
+        })
+    }
+}
+
 
 module.exports = {
-    createUser
+    createUser,
+    login
 }
