@@ -10,7 +10,6 @@ import LocalFarmers from './Pages/LocalFarmers'
 import Contact from './Pages/Contact'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const menuItemsEndpoint = import.meta.env.VITE_MENUITEMS_ENDPOINT
