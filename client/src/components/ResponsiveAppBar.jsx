@@ -8,11 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import './ResponsiveAppBar.css'
 
 const pages = ["About", "Menu", "Gallery", "Local Farmers", "Contact"];
@@ -35,7 +32,7 @@ function ResponsiveAppBar() {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" id='app-bar'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           
