@@ -7,4 +7,7 @@
 
 #app-bar {
     font-family: 'limelight';
+    /* background-color: #808080; */
+    background-color: #456694;
+    color: black;
 }

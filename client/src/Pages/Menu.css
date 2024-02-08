@@ -1,0 +1,36 @@
+#menu-body {
+    background-color: #f6f7ed;
+    /* border: 5px solid #ffe8c6;  */
+    color : #1a2536;
+}
+
+#app-header{
+    font-size: 600%;
+    
+}
+
+#apps-div {
+    border: 5px solid #8d9445;
+}
+
+#individual-menu-items {
+    font-size: xx-large;
+    padding: 0 25% 0 25%;
+}
+
+#menu-item-desc{
+    font-size: 60%;
+    font-weight: 100;
+    text-align: left;
+}
+
+#menu-item-price{
+    text-align: right;
+    font-size: smaller;
+    margin: auto;
+}
+
+#menu-item-title{
+    text-align: left;
+    font-size: 125%;
+}
