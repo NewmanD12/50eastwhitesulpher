@@ -15,7 +15,7 @@ const MenuItem = (item) => {
 
 
     return (
-        <Container id='individual-menu-items'>
+        <Container fluid id='individual-menu-items'>
             <Row className='justify-content-center'>
                 <Col id='menu-item-title'>{item.item.title}</Col>
                 <Col id='menu-item-price'>${item.item.price}</Col>

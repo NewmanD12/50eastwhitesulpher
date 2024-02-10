@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
 import Layout from './components/Layout'
+import Register from './Pages/Register'
 import Welcome from './Pages/Welcome'
 import Login from './Pages/Login'
 import About from './Pages/About'
@@ -10,6 +11,10 @@ import LocalFarmers from './Pages/LocalFarmers'
 import Contact from './Pages/Contact'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CreateNewMenuItem from './Pages/CreateNewMenuItem'
+import AdminPage from './Pages/AdminPage'
+import CreateNewUser from './Pages/CreateNewUser'
+import CreateNewFarmer from './Pages/CreateNewFarmer'
 
 function App() {
   const menuItemsEndpoint = import.meta.env.VITE_MENUITEMS_ENDPOINT
@@ -35,6 +40,10 @@ function App() {
           element : <Welcome />
         },
         {
+          path : '/register',
+          element : <Register />
+        },
+        {
           path : '/login',
           element : <Login />
         },
@@ -47,6 +56,22 @@ function App() {
           element : <Menu 
                       menuItems={menuItems}
                     />
+        },
+        {
+          path :'/admin', 
+          element : <AdminPage />
+        },
+        {
+          path : '/create-new-user',
+          element : <CreateNewUser />
+        },
+        {
+          path : '/create-new-menu-item',
+          element : <CreateNewMenuItem />
+        },
+        {
+          path : '/create-new-farmer',
+          element : <CreateNewFarmer />
         },
         {
           path : '/gallery',

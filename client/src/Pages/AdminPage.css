@@ -1,0 +1,11 @@
+.buttons {
+    width: 50%;
+    height: 80px;
+    margin: 5% 0;
+    font-size: xx-large;
+    text-align: center;
+    text-shadow: 5px 1px black;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+}

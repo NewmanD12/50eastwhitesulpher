@@ -16,10 +16,11 @@
 #individual-menu-items {
     font-size: xx-large;
     padding: 0 25% 0 25%;
+    margin: 5% 0%;
 }
 
 #menu-item-desc{
-    font-size: 60%;
+    font-size: 70%;
     font-weight: 100;
     text-align: left;
 }
