@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 const MenuItem = (item) => {
 
-    console.log(item.item)
+    // console.log(item.item)
 
     // const abvAllergyWarnings = item.app.allergyWarnings.map((allergy) => {
     //     return allergy[0]

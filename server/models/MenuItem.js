@@ -4,8 +4,12 @@ const menuItemSchema = new mongoose.Schema({
     title : String,
     price : String,
     description : String,
-    course : String,
+    restaurant: String,
     allergyWarnings : [String],
+    courseAndPrice : [{
+        course : String,
+        price : String
+    }],
     subsAndUpcharge : [{
         title : String,
         price : String

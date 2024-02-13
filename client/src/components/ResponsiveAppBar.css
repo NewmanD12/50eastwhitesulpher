@@ -14,7 +14,6 @@
     position: relative;
   }
   
-  
   .nav-elements ul {
     display: flex;
     justify-content: space-between;
@@ -57,6 +56,21 @@
     display: none;
   }
 
+  #dropdown-content{
+    display: none;
+    flex-direction: column;
+    background-color: black;
+    opacity: .8;
+    text-align: end;
+    width: 120%;
+    padding-right: 10px;
+  }
+
+  .condensed-dropdown{
+    display: none;
+  }
+
+
 
 @media (max-width: 1200px) {
     .menu-icon {
@@ -65,7 +79,12 @@
         display: block;
         cursor: pointer;
     }
-  
+
+    .condensed-dropdown{
+      display: flex;
+      text-decoration: none;
+    }
+
     .nav-elements {
       position: absolute;
       right: 0;
@@ -115,5 +134,9 @@
         width: 60px;
         margin-top: 5px;
         background-color: wheat;
+    }
+
+    #all-pages-link{
+      display: none;
     }
   }

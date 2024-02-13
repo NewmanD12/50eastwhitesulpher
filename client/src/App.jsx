@@ -17,6 +17,7 @@ import CreateNewUser from './Pages/CreateNewUser'
 import CreateNewFarmer from './Pages/CreateNewFarmer'
 
 function App() {
+
   const menuItemsEndpoint = import.meta.env.VITE_MENUITEMS_ENDPOINT
   
   const [menuItems, setMenuItems] = useState([])
@@ -67,7 +68,9 @@ function App() {
         },
         {
           path : '/create-new-menu-item',
-          element : <CreateNewMenuItem />
+          element : <CreateNewMenuItem 
+                      menuItemsEndpoint={menuItemsEndpoint}
+                    />
         },
         {
           path : '/create-new-farmer',

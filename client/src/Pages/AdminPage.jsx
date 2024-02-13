@@ -17,17 +17,17 @@ const AdminPage = () => {
     return (
         <Container fluid>
             <Row className='justify-content-center'>
-                <Col md={6} className='text-center'>
+                <Col lg={8} className='text-center'>
                     <button className='buttons' onClick={() => navigate('/create-new-user')}>Add User</button>
                 </Col>
             </Row>
             <Row className='justify-content-center'>
-                <Col md={6} className='text-center'>
+                <Col lg={8} className='text-center'>
                     <button className='buttons' onClick={() => navigate('/create-new-menu-item')}>Add Menu Item</button>
                 </Col>
             </Row>
             <Row className='justify-content-center'>
-                <Col md={6} className='text-center'>
+                <Col lg={8} className='text-center'>
                     <button className='buttons' onClick={() => navigate('/create-new-farmer')}>Add New Farmer</button>
                 </Col>
             </Row>

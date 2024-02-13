@@ -21,7 +21,7 @@ const Login = () => {
         const loginResult = await auth.login(username, password)
         console.log(loginResult)
         if(loginResult.success) {
-          navigate('/')
+          navigate('/admin')
         }
         else {
           setErrorMessage(loginResult.message)
