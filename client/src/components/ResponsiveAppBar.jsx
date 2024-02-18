@@ -31,9 +31,9 @@ function ResponsiveAppBar() {
       <div className="container">
 
         <Container fluid>
-            <Row>
+            <Row id='nav-row-container'>
               <Col onClick={() => navigate('/')}>
-                <img src='https://50eastwv.com/wp-content/uploads/2021/06/50-east-logo-2-768x461.png' id='logo'></img>
+                <img src={`/gustardsbistrologo.png`} id='logo'></img>
               </Col>
               <Col className='menu-icon' onClick={handleShowNavbar}>
                 <div id='hamburger'>
@@ -42,7 +42,7 @@ function ResponsiveAppBar() {
                   <div id='bar3'></div>
                 </div>
               </Col>
-              <Col>
+              <Col id='wide-nav'>
                 <div className={`nav-elements  ${showNavbar && 'active'}`}>
                   <ul>
 

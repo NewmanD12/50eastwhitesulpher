@@ -1,5 +1,4 @@
 .container {
-    max-width: 1100px;
     margin: 0 auto;
     padding: 0 15px;
     display: flex;
@@ -13,12 +12,16 @@
     background-color: #3a5884;
     position: relative;
   }
+
+  /* #nav-row-container{
+    margin-top: 40px;
+  } */
   
   .nav-elements ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    margin-top: 25px;
+    margin: 20px;
   }
   
   .nav-elements ul li:not(:last-child) {
@@ -28,12 +31,12 @@
   .nav-elements ul a {
     font-size: 25px;
     font-weight: 400;
-    color: #f6f7ed;
+    color: rgb( 240, 174, 30);
     text-decoration: none;
   }
   
   .nav-elements ul a.active {
-    color: #f6f7ed;
+    color: rgb( 240, 174, 30);
     font-weight: 500;
     position: relative;
   }
@@ -45,11 +48,11 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #f6f7ed;
+    background-color: rgb( 240, 174, 30);
   }
 
   #logo {
-    height: 130px;
+    height: 100px;
   }
 
   .menu-icon {
@@ -73,11 +76,16 @@
 
 
 @media (max-width: 1200px) {
+
+    body {
+      overflow-x: auto;
+    }
+
     .menu-icon {
-        /* width: 70px; */
-        margin-left: 37%;
+        position: relative;
+        overflow: hidden;
+        left: 30%;
         display: block;
-        cursor: pointer;
     }
 
     .condensed-dropdown{
@@ -118,25 +126,29 @@
     #bar1 {
         height: 8px;
         width: 60px;
-        background-color: wheat;
-        margin-top: 50px;
+        background-color: rgb( 240, 174, 30);
+        margin-top: 30px;
     }
     
     #bar2 {
         height: 8px;
         width: 60px;
         margin-top: 5px;
-        background-color: wheat;
+        background-color: rgb( 240, 174, 30);
     }
     
     #bar3 {
         height: 8px;
         width: 60px;
         margin-top: 5px;
-        background-color: wheat;
+        background-color: rgb( 240, 174, 30);
     }
 
     #all-pages-link{
+      display: none;
+    }
+
+    #wide-nave{
       display: none;
     }
   }

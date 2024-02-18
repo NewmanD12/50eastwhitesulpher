@@ -30,7 +30,7 @@ const Register = (props) => {
     }
 
     return (
-        <Container id='register-container' fluid='md'>
+        <Container id='register-container' fluid>
           <Row className="justify-content-center m-2">
             <h1>Register</h1>
           </Row>
