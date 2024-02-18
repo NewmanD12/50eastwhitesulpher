@@ -3,23 +3,21 @@ const MenuItem = require('../models/MenuItem')
 async function createMenuItem(req, res) {
     try{
         const title = req.body.title
-        const price = req.body.price
         const description = req.body.description
         const restaurant = req.body.restaurant
+        const course = req.body.course
         const allergyWarnings = req.body.allergyWarnings
-        const courseAndPrice = req.body.courseAndPrice
-        const subsAndUpcharge = req.body.subsAndUpcharge
-
-        console.log(subsAndUpcharge)
+        const mealPeriodAndPrices = req.body.mealPeriodAndPrices
+        const subsAndUpcharges = req.body.subsAndUpcharges
 
         const newMenuItem = new MenuItem({
             title, 
-            price,
             description,
             restaurant,
+            course,
             allergyWarnings,
-            courseAndPrice,
-            subsAndUpcharge
+            mealPeriodAndPrices,
+            subsAndUpcharges
         })
 
         const savedMenuItem = await newMenuItem.save()

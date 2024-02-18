@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 
 const menuItemSchema = new mongoose.Schema({
     title : String,
-    price : String,
     description : String,
     restaurant: String,
+    course : String,
     allergyWarnings : [String],
-    courseAndPrice : [{
+    mealPeriodAndPrices : [{
         course : String,
         price : String
     }],
-    subsAndUpcharge : [{
+    subsAndUpcharges : [{
         title : String,
         price : String
     }]
