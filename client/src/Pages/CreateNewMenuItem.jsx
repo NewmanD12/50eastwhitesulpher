@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button} from 'react-bootstrap'
-import axios, { all } from "axios";
+import axios from "axios";
 import './CreateNewMenuItem.css'
-
 
 const CreateNewMenuItem = (props) => {
 
@@ -10,14 +9,34 @@ const CreateNewMenuItem = (props) => {
   const [currentSubLevel, setCurrentSubLevel] = useState(1)
 
   const [newMenuItem, setNewMenuItem] = useState({})
+  const [course, setCourse] = useState('')
   const [allergyWarnings, setAllergyWarnings] = useState([])
-  const [mealPeriodAndPrices, setMealPeriodAndPrices] = useState([])
   const [primaryMealPeriodAndPrice, setPrimaryMealPeriodAndPrice] = useState({})
   const [secondaryMealPeriod, setSecondaryMealPeriod] = useState({})
+  const [firstSubAndUpcharge, setFirstSubAndUpcharge] = useState({})
+  const [secondSubAndUpcharge, setSecondSubAndUpcharge] = useState({})
+  const [thirdSubAndUpcharge, setThirdSubAndUpcharge] = useState({})
+  const [fourthSubAndUpcharge, setFourthSubAndUpcharge] = useState({})
+  const [fifthSubAndUpcharge, setFifthSubAndUpcharge] = useState({})
 
-  const submitMenuItem = () => {
-    console.log(primaryMealPeriodAndPrice)
-    console.log(secondaryMealPeriod)
+  const submitMenuItem = (e) => {
+    e.preventDefault()
+
+    const mealPeriodAndPrices = [primaryMealPeriodAndPrice, secondaryMealPeriod]
+
+    const MenuItem = {...newMenuItem,
+      "allergyWarnings" : allergyWarnings,
+      "mealPeriodAndPrices" : mealPeriodAndPrices, 
+      "subsAndUpcharges" : [firstSubAndUpcharge, secondSubAndUpcharge, thirdSubAndUpcharge, fourthSubAndUpcharge, fifthSubAndUpcharge]
+    }
+
+    axios.post(`${menuItemsEndpoint}/create-menu-item`, MenuItem)
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err))
+          .finally(() => {
+            alert('Menu Item Created')
+          })
+
   }
 
   const handleChange = (e) => {
@@ -57,7 +76,7 @@ const CreateNewMenuItem = (props) => {
 
   const handleMealPeriodAndPriceChange = (e) => {
     if(e.target.value === 'lunch' || e.target.value === 'dinner'){
-      setPrimaryMealPeriodAndPrice({...primaryMealPeriodAndPrice, title : e.target.value})
+      setPrimaryMealPeriodAndPrice({...primaryMealPeriodAndPrice, course : e.target.value})
     }
     else{
       setPrimaryMealPeriodAndPrice({...primaryMealPeriodAndPrice, price : e.target.value})
@@ -65,9 +84,9 @@ const CreateNewMenuItem = (props) => {
   }
 
   const handleSecondaryMealPeriod = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     if(e.target.value === 'lunch' || e.target.value === 'dinner'){
-      setSecondaryMealPeriod({...secondaryMealPeriod, title : e.target.value})
+      setSecondaryMealPeriod({...secondaryMealPeriod, course : e.target.value})
     }
     else{
       setSecondaryMealPeriod({...secondaryMealPeriod, price : e.target.value})
@@ -109,6 +128,23 @@ const CreateNewMenuItem = (props) => {
             <option id='pick-rest'>Pick A Restaurant</option>
             <option value='gustardsBistro'>Gustard's Bistro</option>
             <option value='tastingRoom'>The Tasting Room</option>
+          </Form.Select>
+          </Form.Group>
+
+          <Form.Group className="mb-3" onChange={(e) => {
+            const pickCourse = document.getElementById('pick-course')
+            pickCourse.disabled = true
+            handleChange(e)
+          }}>
+          <Form.Label>Course:</Form.Label>
+          <Form.Select name='course'>
+            <option id='pick-course'>Pick A Course</option>
+            <option value='saladsAndStarters'>Crafted Salads & Starters</option>
+            <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+            <option value='comfort'>Comfort</option>
+            <option value='entrees'>Entrees</option>
+            <option value='sides'>Sides</option>
+            <option value='desserts'>Desserts</option>
           </Form.Select>
           </Form.Group>
           
@@ -229,13 +265,26 @@ const CreateNewMenuItem = (props) => {
             <Col className='mt-3' md={6}>
               <Form.Group>
                 <Form.Label>Subs And Upcharges</Form.Label>
-                <Form.Control type="text" placeholder="Enter Substitution" name=''/>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter Substitution" name='firstSubAndUpcharge'
+                  onChange={(e) => {
+                    setFirstSubAndUpcharge({...firstSubAndUpcharge, title : e.target.value})
+                  }}
+                />
               </Form.Group>
             </Col>
             <Col className='mt-3'>
               <Form.Group>
               <Form.Label>Price</Form.Label>
-              <Form.Control type="text" placeholder="Enter Price" name='sub1-price'/>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Price" 
+                name='sub1-price'
+                onChange={(e) => {
+                  setFirstSubAndUpcharge({...firstSubAndUpcharge, price : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
           </Row>
@@ -243,12 +292,25 @@ const CreateNewMenuItem = (props) => {
           {currentSubLevel >= 2 && <Row>
             <Col className='mt-3' md={6}>
               <Form.Group>
-                <Form.Control type="text" placeholder="Enter Substitution" name=''/>
+                <Form.Control 
+                type="text" 
+                placeholder="Enter Substitution" name='secondSubAndUpcharge'
+                onChange={(e) => {
+                  setSecondSubAndUpcharge({...secondSubAndUpcharge, title : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
             <Col className='mt-3'>
               <Form.Group>
-              <Form.Control type="text" placeholder="Enter Price" name='sub1-price'/>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Price" 
+                name='sub2-price'
+                onChange={(e) => {
+                  setSecondSubAndUpcharge({...secondSubAndUpcharge, price : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
           </Row>}
@@ -256,12 +318,25 @@ const CreateNewMenuItem = (props) => {
           {currentSubLevel >= 3 && <Row>
             <Col className='mt-3' md={6}>
               <Form.Group>
-                <Form.Control type="text" placeholder="Enter Substitution" name=''/>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter Substitution" name='thirdSubAndUpcharge'
+                  onChange={(e) => {
+                    setThirdSubAndUpcharge({...thirdSubAndUpcharge, title : e.target.value})
+                  }}
+                />
               </Form.Group>
             </Col>
             <Col className='mt-3'>
               <Form.Group>
-              <Form.Control type="text" placeholder="Enter Price" name='sub1-price'/>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Price" 
+                name='sub3-price'
+                onChange={(e) => {
+                  setThirdSubAndUpcharge({...thirdSubAndUpcharge, price : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
           </Row>}
@@ -269,12 +344,25 @@ const CreateNewMenuItem = (props) => {
           {currentSubLevel >= 4 && <Row>
             <Col className='mt-3' md={6}>
               <Form.Group>
-                <Form.Control type="text" placeholder="Enter Substitution" name=''/>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter Substitution" name='fourthSubAndUpcharge'
+                  onChange={(e) => {
+                    setFourthSubAndUpcharge({...fourthSubAndUpcharge, title : e.target.value})
+                  }}
+                />
               </Form.Group>
             </Col>
             <Col className='mt-3'>
               <Form.Group>
-              <Form.Control type="text" placeholder="Enter Price" name='sub1-price'/>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Price" 
+                name='sub4-price'
+                onChange={(e) => {
+                  setFourthSubAndUpcharge({...fourthSubAndUpcharge, price : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
           </Row>}
@@ -282,18 +370,29 @@ const CreateNewMenuItem = (props) => {
           {currentSubLevel >= 5 && <Row>
             <Col className='mt-3' md={6}>
               <Form.Group>
-                <Form.Control type="text" placeholder="Enter Substitution" name=''/>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter Substitution" name='fifthSubAndUpcharge'
+                  onChange={(e) => {
+                    setFifthSubAndUpcharge({...fifthSubAndUpcharge, title : e.target.value})
+                  }}
+                />
               </Form.Group>
             </Col>
             <Col className='mt-3'>
               <Form.Group>
-              <Form.Control type="text" placeholder="Enter Price" name='sub1-price'/>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Price" 
+                name='sub5-price'
+                onChange={(e) => {
+                  setFifthSubAndUpcharge({...fifthSubAndUpcharge, price : e.target.value})
+                }}
+              />
               </Form.Group>
             </Col>
           </Row>}
-          
-
-
+        
           {currentSubLevel <= 4 && <Row className='justify-content-end mt-3'>
           <Col xs={2}>
             <p onClick={() => {
@@ -302,12 +401,10 @@ const CreateNewMenuItem = (props) => {
           </Col>
           </Row>}
 
-
           <Row className='justify-content-center my-5'>
             <Col className='text-center' sm={6}>
               <Button onClick={(e) => {
-                e.preventDefault()
-                submitMenuItem()
+                submitMenuItem(e)
               }}>Submit</Button>
             </Col>
           </Row>
