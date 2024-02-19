@@ -33,7 +33,7 @@ function ResponsiveAppBar() {
         <Container fluid>
             <Row id='nav-row-container'>
               <Col onClick={() => navigate('/')}>
-                <img src={`/gustardsbistrologo.png`} id='logo'></img>
+                <img src={`/gustardsbistro.png`} id='logo'></img>
               </Col>
               <Col className='menu-icon' onClick={handleShowNavbar}>
                 <div id='hamburger'>

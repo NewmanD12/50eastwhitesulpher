@@ -19,6 +19,7 @@ import CreateNewFarmer from './Pages/CreateNewFarmer'
 function App() {
 
   const menuItemsEndpoint = import.meta.env.VITE_MENUITEMS_ENDPOINT
+  const localFarmersEndpoint = import.meta.env.VITE_LOCALFARMERS_ENDPOINT
   
   const [menuItems, setMenuItems] = useState([])
 
@@ -74,7 +75,9 @@ function App() {
         },
         {
           path : '/create-new-farmer',
-          element : <CreateNewFarmer />
+          element : <CreateNewFarmer 
+                      localFarmersEndpoint={localFarmersEndpoint}
+                    />
         },
         {
           path : '/gallery',

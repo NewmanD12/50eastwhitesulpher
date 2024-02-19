@@ -8,20 +8,21 @@
   }
   
   .navbar {
-    height: 150px;
-    background-color: #3a5884;
-    position: relative;
+    height: 200px;
+    background-color: #fffeca;
+    position: absolute;
   }
 
-  /* #nav-row-container{
+  #nav-row-container{
     margin-top: 40px;
-  } */
+  }
   
   .nav-elements ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
-    margin: 20px;
+    margin: 0% 10% 0% 0%;
+    position: absolute;
   }
   
   .nav-elements ul li:not(:last-child) {
@@ -31,12 +32,12 @@
   .nav-elements ul a {
     font-size: 25px;
     font-weight: 400;
-    color: rgb( 240, 174, 30);
+    color: #274663;
     text-decoration: none;
   }
   
   .nav-elements ul a.active {
-    color: rgb( 240, 174, 30);
+    color: #274663;
     font-weight: 500;
     position: relative;
   }
@@ -48,7 +49,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: rgb( 240, 174, 30);
+    background-color: #274663;
   }
 
   #logo {
@@ -73,17 +74,17 @@
     display: none;
   }
 
+  #dropdown{
+    color: white;
+  }
+
 
 
 @media (max-width: 1200px) {
 
-    body {
-      overflow-x: auto;
-    }
 
     .menu-icon {
         position: relative;
-        overflow: hidden;
         left: 30%;
         display: block;
     }
@@ -126,7 +127,7 @@
     #bar1 {
         height: 8px;
         width: 60px;
-        background-color: rgb( 240, 174, 30);
+        background-color: #274663;
         margin-top: 30px;
     }
     
@@ -134,14 +135,14 @@
         height: 8px;
         width: 60px;
         margin-top: 5px;
-        background-color: rgb( 240, 174, 30);
+        background-color: #274663;
     }
     
     #bar3 {
         height: 8px;
         width: 60px;
         margin-top: 5px;
-        background-color: rgb( 240, 174, 30);
+        background-color: #274663;
     }
 
     #all-pages-link{
