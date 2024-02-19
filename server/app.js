@@ -13,6 +13,7 @@ mongooseConnect()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const menuItemsRouter = require('./routes/menuItems');
+const localFarmmersRouter = require('./routes/localFarmers')
 
 var app = express();
 
@@ -31,7 +32,8 @@ app.options("*", cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/menu-items', menuItemsRouter)
+app.use('/menu-items', menuItemsRouter);
+app.use('/local-farmers', localFarmmersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
