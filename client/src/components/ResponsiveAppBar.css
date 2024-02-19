@@ -11,6 +11,7 @@
     height: 200px;
     background-color: #fffeca;
     position: absolute;
+    width: 100%;
   }
 
   #nav-row-container{
@@ -54,6 +55,8 @@
 
   #logo {
     height: 100px;
+    position: relative;
+    top: -20px;
   }
 
   .menu-icon {
@@ -68,6 +71,10 @@
     text-align: end;
     width: 120%;
     padding-right: 10px;
+  }
+
+  .other-pages-links{
+    color: white;
   }
 
   .condensed-dropdown{
@@ -85,7 +92,7 @@
 
     .menu-icon {
         position: relative;
-        left: 30%;
+        margin-left: 42%;
         display: block;
     }
 

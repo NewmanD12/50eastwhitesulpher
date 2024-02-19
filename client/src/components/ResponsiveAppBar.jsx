@@ -35,7 +35,9 @@ function ResponsiveAppBar() {
               <Col onClick={() => navigate('/')}>
                 <img src={`/gustardsbistro.png`} id='logo'></img>
               </Col>
-              <Col className='menu-icon' onClick={handleShowNavbar}>
+              <Col className='menu-icon' onClick={() => {
+                handleShowNavbar()
+              }}>
                 <div id='hamburger'>
                   <div id='bar1'></div>
                   <div id='bar2'></div>
@@ -85,12 +87,12 @@ function ResponsiveAppBar() {
                                           <div 
                                           id='dropdown-content'
                                           >
-                                            <NavLink to='/'>Home</NavLink>
-                                            <NavLink to='/about'>About</NavLink>
-                                            <NavLink to='/menu'>Menu</NavLink>
-                                            <NavLink to='/gallery'>Gallery</NavLink>
-                                            <NavLink to='/localfarmers'>Local Farmers</NavLink>
-                                            <NavLink to='/contact'>Contact</NavLink>
+                                            <NavLink to='/' className='other-pages-links'>Home</NavLink>
+                                            <NavLink to='/about' className='other-pages-links'>About</NavLink>
+                                            <NavLink to='/menu' className='other-pages-links'>Menu</NavLink>
+                                            <NavLink to='/gallery' className='other-pages-links'>Gallery</NavLink>
+                                            <NavLink to='/localfarmers' className='other-pages-links'>Local Farmers</NavLink>
+                                            <NavLink to='/contact' className='other-pages-links'>Contact</NavLink>
                                           </div>
                                         </li>
                                         }
