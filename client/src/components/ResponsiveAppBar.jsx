@@ -35,7 +35,7 @@ function ResponsiveAppBar() {
               <Col onClick={() => navigate('/')}>
                 <img src={`/gustardsbistro.png`} id='logo'></img>
               </Col>
-              <Col className='menu-icon' onClick={() => {
+              <Col xs={2}  className='menu-icon' onClick={() => {
                 handleShowNavbar()
               }}>
                 <div id='hamburger'>
