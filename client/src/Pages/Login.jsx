@@ -19,7 +19,7 @@ const Login = () => {
     const handleLogin = async () => {
         // console.log(username, password)
         const loginResult = await auth.login(username, password)
-        console.log(loginResult)
+        // console.log(loginResult)
         if(loginResult.success) {
           navigate('/admin')
         }

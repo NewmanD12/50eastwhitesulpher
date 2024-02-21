@@ -14,7 +14,7 @@ function ResponsiveAppBar() {
   const navigate = useNavigate()
   const auth = useAuth();
   const [showNavbar, setShowNavbar] = useState(false)
-  const pages = ["About", "Menu", "Gallery", "Local Farmers", "Contact"];
+  const pages = ["About", "Menu", "Tasting Room", "Gallery", "Local Farmers", "Contact"];
   // console.log(auth)
 
   const changePage = (page) => {
@@ -59,6 +59,10 @@ function ResponsiveAppBar() {
                     {!auth.userToken && <li>
                                           <NavLink to="/menu">Menu</NavLink>
                                         </li>}
+
+                    {!auth.userToken && <li>
+                                          <NavLink to="/tasting-room">Tasting Room</NavLink>
+                                        </li>}
                     
                     {!auth.userToken && <li>
                                           <NavLink to="/gallery">Gallery</NavLink>
@@ -90,6 +94,7 @@ function ResponsiveAppBar() {
                                             <NavLink to='/' className='other-pages-links'>Home</NavLink>
                                             <NavLink to='/about' className='other-pages-links'>About</NavLink>
                                             <NavLink to='/menu' className='other-pages-links'>Menu</NavLink>
+                                            <NavLink to='/tasting-room' className='other-pages-links'>Tasting Room</NavLink>
                                             <NavLink to='/gallery' className='other-pages-links'>Gallery</NavLink>
                                             <NavLink to='/localfarmers' className='other-pages-links'>Local Farmers</NavLink>
                                             <NavLink to='/contact' className='other-pages-links'>Contact</NavLink>

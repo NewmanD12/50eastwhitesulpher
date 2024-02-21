@@ -1,21 +1,22 @@
-#menu-body {
+#lunch-menu-body {
     background-color: #f6f7ed;
     /* border: 5px solid #ffe8c6;  */
     color : #1a2536;
+    padding-top: 50px;
 }
 
-#app-header{
+.course-headers{
     font-size: 300%;
     
 }
 
-#apps-div {
+#apps-div, #sandwiches-and-pies-div, #bowls-div, #desserts-div {
     border: 5px solid #8d9445;
 }
 
 #individual-menu-items {
     font-size: xx-large;
-    padding: 0 25% 0 25%;
+    padding: 0 15% 0 15%;
     margin: 5% 0%;
 }
 
@@ -34,4 +35,8 @@
 #menu-item-title{
     text-align: left;
     font-size: 125%;
+}
+
+#switch-menu{
+    text-decoration: underline;
 }

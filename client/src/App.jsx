@@ -15,6 +15,7 @@ import CreateNewMenuItem from './Pages/CreateNewMenuItem'
 import AdminPage from './Pages/AdminPage'
 import CreateNewUser from './Pages/CreateNewUser'
 import CreateNewFarmer from './Pages/CreateNewFarmer'
+import TastingRoom from './Pages/TastingRoom'
 
 function App() {
 
@@ -58,6 +59,10 @@ function App() {
           element : <Menu 
                       menuItems={menuItems}
                     />
+        },
+        {
+          path : '/tasting-room',
+          element : <TastingRoom />
         },
         {
           path :'/admin', 
