@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Form, Button} from 'react-bootstrap'
 import axios from "axios";
 import './CreateNewMenuItem.css'
+// import LunchCoursesDropdown from '../components/LunchCoursesDropdown';
 
 const CreateNewMenuItem = (props) => {
 
   const { menuItemsEndpoint } = props
   const [currentSubLevel, setCurrentSubLevel] = useState(1)
-
   const [newMenuItem, setNewMenuItem] = useState({})
-  const [course, setCourse] = useState('')
   const [allergyWarnings, setAllergyWarnings] = useState([])
   const [primaryMealPeriodAndPrice, setPrimaryMealPeriodAndPrice] = useState({})
   const [secondaryMealPeriod, setSecondaryMealPeriod] = useState({})
@@ -74,25 +73,6 @@ const CreateNewMenuItem = (props) => {
     }
   }
 
-  const handleMealPeriodAndPriceChange = (e) => {
-    if(e.target.value === 'lunch' || e.target.value === 'dinner'){
-      setPrimaryMealPeriodAndPrice({...primaryMealPeriodAndPrice, course : e.target.value})
-    }
-    else{
-      setPrimaryMealPeriodAndPrice({...primaryMealPeriodAndPrice, price : e.target.value})
-    }
-  }
-
-  const handleSecondaryMealPeriod = (e) => {
-    // console.log(e.target.value)
-    if(e.target.value === 'lunch' || e.target.value === 'dinner'){
-      setSecondaryMealPeriod({...secondaryMealPeriod, course : e.target.value})
-    }
-    else{
-      setSecondaryMealPeriod({...secondaryMealPeriod, price : e.target.value})
-    }
-  }
-
   return (
     <Container fluid className='mt-5'>
   
@@ -130,25 +110,6 @@ const CreateNewMenuItem = (props) => {
             <option value='tastingRoom'>The Tasting Room</option>
           </Form.Select>
           </Form.Group>
-
-          <Form.Group className="mb-3" onChange={(e) => {
-            const pickCourse = document.getElementById('pick-course')
-            pickCourse.disabled = true
-            handleChange(e)
-          }}>
-          <Form.Label>Course:</Form.Label>
-          <Form.Select name='course'>
-            <option id='pick-course'>Pick A Course</option>
-            <option value='starters'>Starters</option>
-            <option value='saladsAndStarters'>Crafted Salads & Starters</option>
-            <option value='sandwichesAndPies'>Sandwiches & Pies</option>
-            <option value='bowls'>Bowls</option>
-            <option value='comfort'>Comfort</option>
-            <option value='entrees'>Entrees</option>
-            <option value='sides'>Sides</option>
-            <option value='desserts'>Desserts</option>
-          </Form.Select>
-          </Form.Group>
           
           <Form.Group className="mb-3" onChange={(e) => handleAlleryWarningChange(e)}>
             <Form.Label>Select Allergy Warnings:</Form.Label>
@@ -184,14 +145,17 @@ const CreateNewMenuItem = (props) => {
           </Form.Group>
           
           <Row>
-            <Col className='mt-3' md={6}>
+            <Col className='mt-3' md={4}>
               <Form.Group onChange={(e) => {
                 const pickMeal = document.getElementById('pick-meal')
                 pickMeal.disabled = true
               }}>
               <Form.Label>Meal Period</Form.Label>
-              <Form.Select name='mealPeriodAndPrice'  onChange={(e) => {
-                handleMealPeriodAndPriceChange(e)
+              <Form.Select name='mealPeriod'  onChange={(e) => {
+                setPrimaryMealPeriodAndPrice({
+                  ...primaryMealPeriodAndPrice, 
+                  mealPeriod : e.target.value
+                }) 
               }}>
               
                   <option id='pick-meal'>Meal</option>
@@ -200,9 +164,52 @@ const CreateNewMenuItem = (props) => {
                 </Form.Select>
               </Form.Group>
             </Col>
-            <Col className='mt-3'>
+            <Col className='mt-3' md={4}>
               <Form.Group onChange={(e) => {
-                handleMealPeriodAndPriceChange(e)
+                const pickCourse = document.getElementById('pick-course')
+                pickCourse.disabled = true
+                setPrimaryMealPeriodAndPrice({
+                  ...primaryMealPeriodAndPrice,
+                  'course' : e.target.value
+                })
+                console.log(primaryMealPeriodAndPrice)
+            }}>
+            
+              <Form.Label>Course:</Form.Label>
+
+                {primaryMealPeriodAndPrice['mealPeriod'] === 'lunch' && 
+              
+                  <Form.Select name='course'>
+                  <option id='pick-course'>Pick A Course</option>
+                  <option value='saladsAndStarters'>Crafted Salads & Starters</option>
+                  <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                  <option value='sides'>Sides</option>
+                  <option value='bowls'>Bowls</option>
+                  <option value='desserts'>Desserts</option>
+                  </Form.Select>
+                }
+
+                {primaryMealPeriodAndPrice['mealPeriod'] === 'dinner' && 
+                  <Form.Select name='course'>
+                  <option id='pick-course'>Pick A Course</option>
+                  <option value='starters'>Starters</option>
+                  <option value='soupsAndSalads'>Crafted Soups & Salads</option>
+                  <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                  <option value='comfort'>Comfort</option>
+                  <option value='entrees'>Entrees</option>
+                  <option value='sides'>Sides</option>
+                  <option value='desserts'>Desserts</option>
+                  </Form.Select>
+                }
+                
+              </Form.Group>
+            </Col>
+            <Col className='mt-3' md={4}>
+              <Form.Group onChange={(e) => {
+                setPrimaryMealPeriodAndPrice({
+                  ...primaryMealPeriodAndPrice,
+                  'price' : e.target.value
+                })
               }}>
               <Form.Label>Price</Form.Label>
               <Form.Control type="text" placeholder="Enter Price" name='price'/>
@@ -211,24 +218,77 @@ const CreateNewMenuItem = (props) => {
           </Row>
 
           <Row id='additional-meal-period'>
-            <Col className='mt-3' md={6}>
-              <Form.Group>
-                <Form.Select onChange={(e) => {
-                  handleSecondaryMealPeriod(e)
-                }}>
+            <Col className='mt-3' md={4}>
+              <Form.Group onChange={(e) => {
+                const pickMeal = document.getElementById('pick-meal')
+                pickMeal.disabled = true
+              }}>
+              <Form.Label>Meal Period</Form.Label>
+              <Form.Select name='mealPeriod'  onChange={(e) => {
+                setSecondaryMealPeriod({
+                  ...secondaryMealPeriod, 
+                  mealPeriod : e.target.value
+                }) 
+              }}>
+              
                   <option id='pick-meal'>Meal</option>
                   <option value='lunch'>Lunch</option>
                   <option value='dinner'>Dinner</option>
                 </Form.Select>
               </Form.Group>
             </Col>
-            <Col className='mt-3'>
+            <Col className='mt-3' md={4}>
               <Form.Group onChange={(e) => {
-                handleSecondaryMealPeriod(e)
+                const pickCourse = document.getElementById('pick-course')
+                pickCourse.disabled = true
+                setSecondaryMealPeriod({
+                  ...secondaryMealPeriod,
+                  'course' : e.target.value
+                })
+                console.log(secondaryMealPeriod)
+            }}>
+            
+              <Form.Label>Course:</Form.Label>
+
+                {secondaryMealPeriod['mealPeriod'] === 'lunch' && 
+              
+                  <Form.Select name='course'>
+                  <option id='pick-course'>Pick A Course</option>
+                  <option value='saladsAndStarters'>Crafted Salads & Starters</option>
+                  <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                  <option value='sides'>Sides</option>
+                  <option value='bowls'>Bowls</option>
+                  <option value='desserts'>Desserts</option>
+                  </Form.Select>
+                }
+
+                {secondaryMealPeriod['mealPeriod'] === 'dinner' && 
+                  <Form.Select name='course'>
+                  <option id='pick-course'>Pick A Course</option>
+                  <option value='starters'>Starters</option>
+                  <option value='soupsAndSalads'>Crafted Soups & Salads</option>
+                  <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                  <option value='comfort'>Comfort</option>
+                  <option value='entrees'>Entrees</option>
+                  <option value='sides'>Sides</option>
+                  <option value='desserts'>Desserts</option>
+                  </Form.Select>
+                }
+                
+              </Form.Group>
+            </Col>
+            <Col className='mt-3' md={4}>
+              <Form.Group onChange={(e) => {
+                setSecondaryMealPeriod({
+                  ...secondaryMealPeriod,
+                  'price' : e.target.value
+                })
               }}>
+              <Form.Label>Price</Form.Label>
               <Form.Control type="text" placeholder="Enter Price" name='price'/>
               </Form.Group>
             </Col>
+
           </Row>
 
           <Row className='justify-content-end mt-3'>
@@ -266,7 +326,7 @@ const CreateNewMenuItem = (props) => {
           <Row>
             <Col className='mt-3' md={6}>
               <Form.Group>
-                <Form.Label>Subs And Upcharges</Form.Label>
+                <Form.Label>Substitution</Form.Label>
                 <Form.Control 
                   type="text" 
                   placeholder="Enter Substitution" name='firstSubAndUpcharge'

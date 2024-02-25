@@ -5,22 +5,23 @@ import DinnerMenu from '../components/DinnerMenu';
 
 const Menu = (props) => {
   
-  const { menuItems } = props
-  const [menuToDisplay, setMenuToDisplay] = useState('lunch')
+  const { menuItems, currentMenu, setCurrentMenu } = props
 
   return (
 
     <>
 
-      {menuToDisplay === 'lunch' && <LunchMenu 
-                                      setMenuToDisplay={setMenuToDisplay}
+      {currentMenu === 'lunch' && <LunchMenu
                                       menuItems={menuItems}
+                                      currentMenu={currentMenu}
+                                      setCurrentMenu={setCurrentMenu}
                                     />
       }
 
-      {menuToDisplay === 'dinner' &&  <DinnerMenu 
-                                        setMenuToDisplay={setMenuToDisplay}
+      {currentMenu === 'dinner' &&  <DinnerMenu 
                                         menuItems={menuItems}
+                                        currentMenu={currentMenu}
+                                        setCurrentMenu={setCurrentMenu}
                                       />
       }
         

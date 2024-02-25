@@ -23,6 +23,7 @@ function App() {
   const localFarmersEndpoint = import.meta.env.VITE_LOCALFARMERS_ENDPOINT
   
   const [menuItems, setMenuItems] = useState([])
+  const [currentMenu, setCurrentMenu] = useState('lunch')
 
 
   useEffect(() => {
@@ -58,6 +59,8 @@ function App() {
           path : '/menu',
           element : <Menu 
                       menuItems={menuItems}
+                      currentMenu={currentMenu}
+                      setCurrentMenu={setCurrentMenu}
                     />
         },
         {

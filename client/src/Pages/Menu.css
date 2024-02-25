@@ -1,6 +1,5 @@
-#lunch-menu-body {
+#lunch-menu-body, #dinner-menu-body {
     background-color: #f6f7ed;
-    /* border: 5px solid #ffe8c6;  */
     color : #1a2536;
     padding-top: 50px;
 }
@@ -10,8 +9,8 @@
     
 }
 
-#apps-div, #sandwiches-and-pies-div, #bowls-div, #desserts-div {
-    border: 5px solid #8d9445;
+#apps-div, #starters-div , #sandwiches-and-pies-div, #bowls-div, #desserts-div {
+    border: 5px solid #1a2536;
 }
 
 #individual-menu-items {
@@ -39,4 +38,8 @@
 
 #switch-menu{
     text-decoration: underline;
+}
+
+.subs {
+    font-size: 54%;
 }

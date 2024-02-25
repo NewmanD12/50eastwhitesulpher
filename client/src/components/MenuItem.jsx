@@ -2,35 +2,51 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './MenuItem.css'
+import '../Pages/Menu.css'
+
 
 const MenuItem = (props) => {
 
-    const { item } = props
+    const { item, currentMenu } = props
 
     const mealPeriodAndPrices = item.mealPeriodAndPrices
-    const lunchPriceFound = mealPeriodAndPrices.filter((item) => {
-        return item.course === 'lunch'
+    const menuPriceFound = mealPeriodAndPrices.filter((item) => {
+        return item.mealPeriod === currentMenu
     })
-    const price = lunchPriceFound[0].price
+
+    const price = menuPriceFound[0].price
 
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
 
-    let subsBeginning = []
-    let lastSub = {}
-    let subsList = ''
+    const convertSubs = (listOfSubs) => {
+        const lengthOfSubs = listOfSubs.length
 
-    if(subs.length > 1){
-        subsBeginning = subs.slice(0, subs.length-1)
-        lastSub = subs[subs.length - 1]
-        subsList = ``
+        let finalSubsAndPrices = ''
+
+        if(lengthOfSubs === 1){
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price}`
+        }
+        else if(lengthOfSubs === 2){
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price} | ${listOfSubs[1].title} $${listOfSubs[1].price}`
+        }
+        else if(lengthOfSubs === 3){
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price} | ${listOfSubs[1].title} $${listOfSubs[1].price} | ${listOfSubs[2].title} $${listOfSubs[2].price}`
+        }
+        else if(lengthOfSubs === 4){
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price} | ${listOfSubs[1].title} $${listOfSubs[1].price} | ${listOfSubs[2].title} $${listOfSubs[2].price} | ${listOfSubs[3].title} $${listOfSubs[3].price}`
+        }
+        else if(lengthOfSubs === 5){
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price} | ${listOfSubs[1].title} $${listOfSubs[1].price} | ${listOfSubs[2].title} $${listOfSubs[2].price} | ${listOfSubs[3].title} $${listOfSubs[3].price} | ${listOfSubs[4].title} $${listOfSubs[4].price}`
+        }
+
+        return finalSubsAndPrices
     }
-    
-    console.log(subsBeginning)
-    console.log(lastSub)
-   
+
+    if(subs.length > 0){
+        convertSubs(subs)
+    }
 
     return (
         <Container fluid id='individual-menu-items'>
@@ -43,9 +59,9 @@ const MenuItem = (props) => {
                     <p id='menu-item-desc'>{item.description}</p>
                 </Col>
             </Row>
-            <Row className='justify-content-center text-center'>
+            <Row className='justify-content-center'>
                 <Col>
-                    <p></p>
+                    <p className='subs'>{convertSubs(subs)}</p>
                 </Col>
             </Row>
         </Container>
