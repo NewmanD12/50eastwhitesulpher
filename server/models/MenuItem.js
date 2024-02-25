@@ -4,9 +4,9 @@ const menuItemSchema = new mongoose.Schema({
     title : String,
     description : String,
     restaurant: String,
-    course : String,
     allergyWarnings : [String],
     mealPeriodAndPrices : [{
+        mealPeriod : String,
         course : String,
         price : String
     }],

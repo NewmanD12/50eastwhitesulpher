@@ -5,7 +5,6 @@ async function createMenuItem(req, res) {
         const title = req.body.title
         const description = req.body.description
         const restaurant = req.body.restaurant
-        const course = req.body.course
         const allergyWarnings = req.body.allergyWarnings
         const mealPeriodAndPrices = req.body.mealPeriodAndPrices
         const subsAndUpcharges = req.body.subsAndUpcharges
@@ -14,7 +13,6 @@ async function createMenuItem(req, res) {
             title, 
             description,
             restaurant,
-            course,
             allergyWarnings,
             mealPeriodAndPrices,
             subsAndUpcharges
