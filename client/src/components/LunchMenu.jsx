@@ -6,7 +6,7 @@ import MenuItem from './MenuItem'
 
 const LunchMenu = (props) => {
 
-    const { menuItems, currentMenu, setCurrentMenu } = props
+    const { menuItemsEndpoint, menuItems, currentMenu, setCurrentMenu } = props
 
     let lunchItems = []
     let saladsAndStarters = []
@@ -27,7 +27,7 @@ const LunchMenu = (props) => {
         }
     })
 
-    // console.log(lunchItems)
+    // console.log(menuItemsEndpoint)
     lunchItems.map((item) => {
         // console.log(item.mealPeriodAndPrices[0].mealPeriod)
         if(item.mealPeriodAndPrices[0].course === 'saladsAndStarters' || item.mealPeriodAndPrices[1].course === 'saladsAndStarters'){
@@ -49,7 +49,7 @@ const LunchMenu = (props) => {
 
 
     // console.log(lunchItems)
-    console.log(saladsAndStarters)
+    // console.log(saladsAndStarters)
 
     return (
         <>
@@ -80,6 +80,7 @@ const LunchMenu = (props) => {
                                             item={item} 
                                             key={index} 
                                             currentMenu={currentMenu}
+                                            menuItemsEndpoint={menuItemsEndpoint}
                                         />
                                     </Col>
                         })
@@ -99,6 +100,7 @@ const LunchMenu = (props) => {
                                                 item={item} 
                                                 key={index} 
                                                 currentMenu={currentMenu}
+                                                menuItemsEndpoint={menuItemsEndpoint}
                                             />
                                         </Col>
                             })
@@ -123,6 +125,7 @@ const LunchMenu = (props) => {
                                                 item={item} 
                                                 key={index} 
                                                 currentMenu={currentMenu}
+                                                menuItemsEndpoint={menuItemsEndpoint}
                                             />
                                         </Col>
                             })
@@ -142,6 +145,7 @@ const LunchMenu = (props) => {
                                                 item={item} 
                                                 key={index} 
                                                 currentMenu={currentMenu}
+                                                menuItemsEndpoint={menuItemsEndpoint}
                                             />
                                         </Col>
                             })

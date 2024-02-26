@@ -58,6 +58,7 @@ function App() {
         {
           path : '/menu',
           element : <Menu 
+                      menuItemsEndpoint={menuItemsEndpoint}
                       menuItems={menuItems}
                       currentMenu={currentMenu}
                       setCurrentMenu={setCurrentMenu}

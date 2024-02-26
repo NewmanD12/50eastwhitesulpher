@@ -5,7 +5,7 @@ import DinnerMenu from '../components/DinnerMenu';
 
 const Menu = (props) => {
   
-  const { menuItems, currentMenu, setCurrentMenu } = props
+  const { menuItems, currentMenu, setCurrentMenu, menuItemsEndpoint } = props
 
   return (
 
@@ -15,6 +15,7 @@ const Menu = (props) => {
                                       menuItems={menuItems}
                                       currentMenu={currentMenu}
                                       setCurrentMenu={setCurrentMenu}
+                                      menuItemsEndpoint={menuItemsEndpoint}
                                     />
       }
 
@@ -22,6 +23,7 @@ const Menu = (props) => {
                                         menuItems={menuItems}
                                         currentMenu={currentMenu}
                                         setCurrentMenu={setCurrentMenu}
+                                        menuItemsEndpoint={menuItemsEndpoint}
                                       />
       }
         
