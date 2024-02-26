@@ -5,5 +5,6 @@ const menuItemsController = require('../controllers/menuItemsController')
 
 router.post('/create-menu-item', menuItemsController.createMenuItem)
 router.get('/all-menu-items', menuItemsController.allMenuItems)
+router.delete('/delete-menu-item/:id', menuItemsController.deleteMenuItem)
 
 module.exports = router

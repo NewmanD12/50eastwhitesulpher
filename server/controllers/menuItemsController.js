@@ -51,7 +51,26 @@ async function allMenuItems(req, res){
     }
 }
 
+async function deleteMenuItem(req, res, next){
+    try {
+        const id = req.params.id
+        const deletedItem = await MenuItem.findByIdAndDelete(id)
+        res.json({
+            success : true,
+            id : id,
+            deletedItem : deletedItem
+        })
+    }
+    catch (e) {
+        res.json({
+            success : false,
+            error : e.toString()
+        })
+    }
+}
+
 module.exports = {
     createMenuItem, 
-    allMenuItems
+    allMenuItems, 
+    deleteMenuItem
 }
