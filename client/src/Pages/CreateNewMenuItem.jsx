@@ -33,6 +33,7 @@ const CreateNewMenuItem = (props) => {
           .then((res) => console.log(res.data))
           .catch((err) => console.log(err))
           .finally(() => {
+            window.location.reload(false)
             alert('Menu Item Created')
           })
 

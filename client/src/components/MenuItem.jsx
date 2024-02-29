@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col, Form, Button} from 'react-bootstrap'
 import '../Pages/Menu.css'
-import Button from 'react-bootstrap/Button'
 import './MenuItem.css'
 import { useAuth } from '../Hooks/Auth';
 import axios from 'axios';
@@ -17,11 +14,16 @@ const MenuItem = (props) => {
 
 
     const [isEditing, setIsEditing] = useState(false)
+    const [itemCopy, setItemCopy] = useState(item)
+    const [currentSubLevel, setCurrentSubLevel] = useState(1)
+
 
     const mealPeriodAndPrices = item.mealPeriodAndPrices
     const menuPriceFound = mealPeriodAndPrices.filter((item) => {
         return item.mealPeriod === currentMenu
     })
+
+    console.log(item)
 
     const price = menuPriceFound[0].price
 
@@ -54,7 +56,7 @@ const MenuItem = (props) => {
     }
 
     const handleEdit = (menuItemId) => {
-        console.log(menuItemId)
+        setIsEditing(true)
     }
 
     const handleDelete = (menuItemId) => {
@@ -76,63 +78,317 @@ const MenuItem = (props) => {
 
     return (
 
+        <>
+        
+        {!isEditing && <Container fluid 
+                            id='individual-menu-items'
+                            onMouseEnter={(e) => {
+                                const editCol = document.getElementById(`${item._id}-edit-col`)
+                                const deleteCol = document.getElementById(`${item._id}-delete-col`)
+                                
+                                editCol.style.display = 'flex'
+                                deleteCol.style.display = 'flex'
+                            }}
+                            onMouseLeave={(e) => {
+                                const editCol = document.getElementById(`${item._id}-edit-col`)
+                                const deleteCol = document.getElementById(`${item._id}-delete-col`)
+                                
+                                editCol.style.display = 'none'
+                                deleteCol.style.display = 'none'
+                            }}
+                        >
+                            {auth.userToken && <Row 
+                                                    className='edit-row justify-content-end' 
+                                                    id={`${item._id}-edit-row`}
+                                                >
+                                                    <Col xs={3} className='button-cols' id={`${item._id}-edit-col`}>
+                                                        <Button 
+                                                            variant='warning'
+                                                            onClick={() => {
+                                                                handleEdit(item._id)
+                                                            }}    
+                                                        >Edit</Button>
+                                                    </Col>
+                                                    <Col xs={3} className='button-cols' id={`${item._id}-delete-col`}>
+                                                        <Button 
+                                                            variant='danger'
+                                                            onClick={() => {
+                                                                handleDelete(item._id)
+                                                            }}    
+                                                        >Delete</Button>
+                                                    </Col>
+                                                </Row>
+                            }
+                            
+                            <Row className='justify-content-center'>
+                                <Col id='menu-item-title' xs={8}>{item.title}</Col>
+                                <Col id='menu-item-price'>${price}</Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <p id='menu-item-desc'>{item.description}</p>
+                                </Col>
+                            </Row>
+                            <Row className='justify-content-center'>
+                                <Col>
+                                    <p className='subs'>{convertSubs(subs)}</p>
+                                </Col>
+                            </Row>
+                        </Container>}
         
 
-        <Container fluid 
-            id='individual-menu-items'
-            onMouseEnter={(e) => {
-                const editCol = document.getElementById(`${item._id}-edit-col`)
-                const deleteCol = document.getElementById(`${item._id}-delete-col`)
-                
-                editCol.style.display = 'flex'
-                deleteCol.style.display = 'flex'
-            }}
-            onMouseLeave={(e) => {
-                const editCol = document.getElementById(`${item._id}-edit-col`)
-                const deleteCol = document.getElementById(`${item._id}-delete-col`)
-                
-                editCol.style.display = 'none'
-                deleteCol.style.display = 'none'
-            }}
-        >
-            {auth.userToken && <Row 
-                                    className='edit-row justify-content-end' 
-                                    id={`${item._id}-edit-row`}
-                                >
-                                    <Col sm={2} className='button-cols' id={`${item._id}-edit-col`}>
-                                        <Button 
-                                            variant='warning'
-                                            onClick={() => {
-                                                handleEdit(item._id)
-                                            }}    
-                                        >Edit</Button>
-                                    </Col>
-                                    <Col sm={2} className='button-cols' id={`${item._id}-delete-col`}>
-                                        <Button 
-                                            variant='danger'
-                                            onClick={() => {
-                                                handleDelete(item._id)
-                                            }}    
-                                        >Delete</Button>
-                                    </Col>
-                                </Row>
-            }
+        {
+            isEditing && <Container fluid className='mt-5'>
+                            <Row 
+                                className='justify-content-center text-center'
+                            >
+                                <Col xs={6}>
+                                    <Form>
+                                        <Form.Group className="mb-3" onChange={(e) => handleChange(e)}>
+                                        <Form.Control type="text" placeholder={item.title} name='title'/>
+                                        </Form.Group>
+                                    </Form>
+                                </Col>
+                                <Col xs={3} className='text-right'>
+                                    <Form>
+                                        <Form.Group>
+                                        <Form.Control 
+                                        type='text'
+                                        name='price'
+                                        placeholder={price}
+                                        />
+                                        </Form.Group>
+                                    </Form>
+                                </Col>
+                            </Row>
+
+                            <Row className='justify-content-center'>
+                                <Col xs={9}>
+                                    <Form>
+                                        <Form.Group className="mb-3" onChange={(e) => handleChange(e)}>
+                                        <Form.Control as='textarea' rows={3} placeholder={item.description} name='description'/>
+                                        </Form.Group>
+                                    </Form>
+                                </Col>
+                            </Row>
+
+                            <Row className='justify-content-center mx-5'>
+                                <Col xs={4}>
+                                    <Form.Group className="mb-3" onChange={(e) => handleAlleryWarningChange(e)}>
+                                        
+                                        <Form.Check // prettier-ignore
+                                        type='checkbox'
+                                        id='vegetarian'
+                                        label='Vegetarian'
+                                        name='vegetarian'
+                                        />
+                            
+                                        <Form.Check // prettier-ignore
+                                        type='checkbox'
+                                        id='vegan'
+                                        label='Vegan'
+                                        name='vegan'
+                                        />
+                                        
+                                    </Form.Group>
+                                </Col>
+                                <Col xs={4}>
+                                    <Form.Group className="mb-3" onChange={(e) => handleAlleryWarningChange(e)}>
+                            
+                                        <Form.Check // prettier-ignore
+                                        type='checkbox'
+                                        id='glutenFree'
+                                        label='Gluten Free'
+                                        name='gluten free'
+                                        />
+                            
+                                        <Form.Check // prettier-ignore
+                                        type='checkbox'
+                                        id='dairyfree'
+                                        label='Dairy Free'
+                                        name='dairy free'
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row className='justify-content-center'>
+                                <Col xs={9}>
+                                    <Form.Group>
+                                        <Form.Select name='course'>
+                                        <option id='pick-course'>Pick A Course</option>
+                                        <option value='saladsAndStarters'>Crafted Salads & Starters</option>
+                                        <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                                        <option value='sides'>Sides</option>
+                                        <option value='bowls'>Bowls</option>
+                                        <option value='desserts'>Desserts</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row className='justify-content-center'>
+                                <Col className='mt-3' xs={5}>
+                                    <Form.Group>
+                                    <Form.Label>Substitution</Form.Label>
+                                    <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter Substitution" name='firstSubAndUpcharge'
+                                    onChange={(e) => {
+                                        setFirstSubAndUpcharge({...firstSubAndUpcharge, title : e.target.value})
+                                    }}
+                                    />
+                                    </Form.Group>
+                                </Col>
+                                <Col className='mt-3' xs={4}>
+                                    <Form.Group>
+                                    <Form.Label>Price</Form.Label>
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Price" 
+                                        name='sub1-price'
+                                        onChange={(e) => {
+                                        setFirstSubAndUpcharge({...firstSubAndUpcharge, price : e.target.value})
+                                        }}
+                                    />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+          
+                            {currentSubLevel >= 2 && <Row className='justify-content-center'>
+                                <Col className='mt-3' xs={5}>
+                                    <Form.Group>
+                                        <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Substitution" name='secondSubAndUpcharge'
+                                        onChange={(e) => {
+                                        setSecondSubAndUpcharge({...secondSubAndUpcharge, title : e.target.value})
+                                        }}
+                                    />
+                                    </Form.Group>
+                                </Col>
+                                <Col className='mt-3' xs={4}>
+                                    <Form.Group>
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Price" 
+                                        name='sub2-price'
+                                        onChange={(e) => {
+                                        setSecondSubAndUpcharge({...secondSubAndUpcharge, price : e.target.value})
+                                        }}
+                                    />
+                                    </Form.Group>
+                                </Col>
+                            </Row>}
+          
+                            {currentSubLevel >= 3 && <Row className='justify-content-center'>
+                            <Col className='mt-3' xs={5}>
+                                <Form.Group>
+                                    <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter Substitution" name='thirdSubAndUpcharge'
+                                    onChange={(e) => {
+                                    setThirdSubAndUpcharge({...thirdSubAndUpcharge, title : e.target.value})
+                                    }}
+                                />
+                                </Form.Group>
+                            </Col>
+                            <Col className='mt-3' xs={4}>
+                                <Form.Group>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter Price" 
+                                    name='sub3-price'
+                                    onChange={(e) => {
+                                    setThirdSubAndUpcharge({...thirdSubAndUpcharge, price : e.target.value})
+                                    }}
+                                />
+                                </Form.Group>
+                            </Col>
+                        </Row>}
+                        
+                        {currentSubLevel >= 4 && <Row className='justify-content-center'>
+                            <Col className='mt-3' xs={5}>
+                            <Form.Group>
+                                <Form.Control 
+                                type="text" 
+                                placeholder="Enter Substitution" name='fourthSubAndUpcharge'
+                                onChange={(e) => {
+                                    setFourthSubAndUpcharge({...fourthSubAndUpcharge, title : e.target.value})
+                                }}
+                                />
+                            </Form.Group>
+                            </Col>
+                            <Col className='mt-3' xs={4}>
+                            <Form.Group>
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Enter Price" 
+                                name='sub4-price'
+                                onChange={(e) => {
+                                setFourthSubAndUpcharge({...fourthSubAndUpcharge, price : e.target.value})
+                                }}
+                            />
+                            </Form.Group>
+                            </Col>
+                        </Row>}
+          
+                        {currentSubLevel >= 5 && <Row className='justify-content-center'>
+                            <Col className='mt-3' xs={5}>
+                                <Form.Group>
+                                    <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter Substitution" name='fifthSubAndUpcharge'
+                                    onChange={(e) => {
+                                        setFifthSubAndUpcharge({...fifthSubAndUpcharge, title : e.target.value})
+                                    }}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col className='mt-3' xs={4}>
+                                <Form.Group>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter Price" 
+                                    name='sub5-price'
+                                    onChange={(e) => {
+                                    setFifthSubAndUpcharge({...fifthSubAndUpcharge, price : e.target.value})
+                                    }}
+                                />
+                                </Form.Group>
+                            </Col>
+                        </Row>}
+        
+          {currentSubLevel <= 4 && <Row className='justify-content-end mt-3'>
+          <Col xs={2}>
+            <p onClick={() => {
+              setCurrentSubLevel(currentSubLevel + 1)
+            }}>+Add Another</p>
+          </Col>
+          </Row>}
+
+                            <Row className='justify-content-center text-center my-5'>
+                                <Col xs={4}>
+                                    <Button
+                                        variant='success'
+                                    >Save</Button>
+                                </Col>
+                                <Col xs={4}>
+                                    <Button
+                                        variant='danger'
+                                        onClick={(e) => setIsEditing(false)}
+                                    >Cancel</Button>
+                                </Col>
+                            </Row>
             
-            <Row className='justify-content-center'>
-                <Col id='menu-item-title' xs={8}>{item.title}</Col>
-                <Col id='menu-item-price'>${price}</Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p id='menu-item-desc'>{item.description}</p>
-                </Col>
-            </Row>
-            <Row className='justify-content-center'>
-                <Col>
-                    <p className='subs'>{convertSubs(subs)}</p>
-                </Col>
-            </Row>
-        </Container>
+            
+            
+                        </Container>
+        }
+
+        </>
+
+        
     )
 }
 

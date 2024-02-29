@@ -7,7 +7,7 @@ import MenuItem from './MenuItem'
 
 const DinnerMenu = (props) => {
 
-    const { menuItems, currentMenu, setCurrentMenu } = props
+    const { menuItems, currentMenu, setCurrentMenu, menuItemsEndpoint } = props
 
     let dinnerItems = []
     let starters = []
