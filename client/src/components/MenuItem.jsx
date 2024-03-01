@@ -24,6 +24,7 @@ const MenuItem = (props) => {
         return item.mealPeriod === currentMenu
     })
     const price = menuPriceFound[0].price
+    const course = menuPriceFound[0].course
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
@@ -104,17 +105,36 @@ const MenuItem = (props) => {
         })
     }
 
-    const makeItemToPass = () => {
-        setEditedMenuItem({
-            ...editedMenuItem,
-            'restaurant' : item.restaurant
-        })
-    }
+
+    // console.log(editedMenuItem)
 
     const submitEdit = (e) => {
-        makeItemToPass()
-        // console.log(editedMenuItem)
-        console.log(editedMenuItem)
+        e.preventDefault()
+        const otherMealPeriodAndPrice = item.mealPeriodAndPrices.filter((item) => {
+                                    return item.mealPeriod !== currentMenu
+                                })
+
+        const subsAndUpchargesToPass = [firstSubAndUpcharge, secondSubAndUpcharge, thirdSubAndUpcharge, fourthSubAndUpcharge, fifthSubAndUpcharge]
+
+        const editedItemToPass = {
+            "title" : editedMenuItem.title ? editedMenuItem.title : item.title,
+            "description" : editedMenuItem.description ? editedMenuItem.description : item.description,
+            "restaurant" : item.restaurant,
+            "allergyWarnings" : allergyWarnings.length > 1 ? allergyWarnings : item.allergyWarnings,
+            "mealPeriodAndPrices" : [{
+                "mealPeriod" : currentMenu,
+                "course" : editedMenuItem.course ? editedMenuItem.course : course,
+                "price" : editedMenuItem.price ? editedMenuItem.price : price
+            }, otherMealPeriodAndPrice[0]],
+            "subsAndUpcharges" : firstSubAndUpcharge.title ? subsAndUpchargesToPass : item.subsAndUpcharges
+        }
+
+        axios.put(`${menuItemsEndpoint}/edit-item/${item._id}`, editedItemToPass)
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err.toString()))
+                .finally(() => {
+                    window.location.reload(false)
+                })
     }
 
 
@@ -442,6 +462,7 @@ const MenuItem = (props) => {
                                     <Button
                                         variant='success'
                                         onClick={(e) => {
+                                            e.preventDefault()
                                             submitEdit(e)}
                                         }
                                     >Save</Button>
