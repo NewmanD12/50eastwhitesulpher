@@ -1,10 +1,19 @@
 import React from 'react'
+import { Container, Row, Col, Form, Button} from 'react-bootstrap'
+import './Welcome.css'
+
 
 const Welcome = () => {
 
   return (
     <>
-      <h1>Welcome</h1>
+      <Container fluid>
+        <Row className='justify-content-center'>
+          <Col md={6}>
+            <img src={'/flamey-drip.jpg'} id='landing-page-image'></img>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

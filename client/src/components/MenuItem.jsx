@@ -15,27 +15,23 @@ const MenuItem = (props) => {
 
     const [isEditing, setIsEditing] = useState(false)
     const [itemCopy, setItemCopy] = useState(item)
-    const [currentSubLevel, setCurrentSubLevel] = useState(1)
-
-
+    
+    ///////////////////////////////////////////
+    // THIS BLOCK IS FOR FINDING THE MENU PRICE AND CONVERTING THE SUBS INTO A STRING
+    
     const mealPeriodAndPrices = item.mealPeriodAndPrices
     const menuPriceFound = mealPeriodAndPrices.filter((item) => {
         return item.mealPeriod === currentMenu
     })
-
-    console.log(item)
-
     const price = menuPriceFound[0].price
-
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
-
     const convertSubs = (listOfSubs) => {
         const lengthOfSubs = listOfSubs.length
-
+        
         let finalSubsAndPrices = ''
-
+        
         if(lengthOfSubs === 1){
             finalSubsAndPrices = `${listOfSubs[0].title}}`
         }
@@ -51,10 +47,84 @@ const MenuItem = (props) => {
         else if(lengthOfSubs === 5){
             finalSubsAndPrices = `${listOfSubs[0].title} ${listOfSubs[0].price ? `$${listOfSubs[0].price}` : '' } | ${listOfSubs[1].title} ${listOfSubs[1].price ? `$${listOfSubs[1].price}` : '' } | ${listOfSubs[2].title} ${listOfSubs[2].price ? `$${listOfSubs[2].price}` : '' } | ${listOfSubs[3].title} ${listOfSubs[3].price ? `$${listOfSubs[3].price}` : '' } | ${listOfSubs[4].title} ${listOfSubs[4].price ? `$${listOfSubs[4].price}` : '' }`
         }
-
+        
         return finalSubsAndPrices
     }
+    if(subs.length > 0){
+        convertSubs(subs)
+    }
+    
+    ///////////////////////////////////////////
+    // console.log(item)
 
+    ///////////////////////////////////////////
+    // THIS BLOCK IS FOR COLLECTING AND SENDING THE EDITED MENU ITEM TO THE BACKEND
+
+    const [editedMenuItem, setEditedMenuItem] = useState({})
+
+    const [allergyWarnings, setAllergyWarnings] = useState([])
+    const [firstSubAndUpcharge, setFirstSubAndUpcharge] = useState({})
+    const [secondSubAndUpcharge, setSecondSubAndUpcharge] = useState({})
+    const [thirdSubAndUpcharge, setThirdSubAndUpcharge] = useState({})
+    const [fourthSubAndUpcharge, setFourthSubAndUpcharge] = useState({})
+    const [fifthSubAndUpcharge, setFifthSubAndUpcharge] = useState({})
+
+    const handleAlleryWarningChange = (e) => {
+
+        if(allergyWarnings.includes(e.target.name)){
+    
+          const index = allergyWarnings.indexOf(e.target.name)
+          let newAllergyWarnings = []
+    
+          if(index === 0){
+            newAllergyWarnings = allergyWarnings.slice(1)
+            setAllergyWarnings(newAllergyWarnings)
+          }
+          else if(index === allergyWarnings.length - 1){
+            newAllergyWarnings = allergyWarnings.slice(0, index)
+            setAllergyWarnings(newAllergyWarnings)
+          }
+          else{
+            const beginning = allergyWarnings.slice(0, index)
+            const ending = allergyWarnings.slice(index + 1)
+            setAllergyWarnings(beginning.concat(ending))
+          }
+        }
+        else {
+          setAllergyWarnings([
+            ...allergyWarnings, e.target.name
+          ])
+        }
+    }
+
+    const handleChange = (e) => {
+        setEditedMenuItem({
+            ...editedMenuItem,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const makeItemToPass = () => {
+        setEditedMenuItem({
+            ...editedMenuItem,
+            'restaurant' : item.restaurant
+        })
+    }
+
+    const submitEdit = (e) => {
+        makeItemToPass()
+        // console.log(editedMenuItem)
+        console.log(editedMenuItem)
+    }
+
+
+    ///////////////////////////////////////////
+
+    
+    const [currentSubLevel, setCurrentSubLevel] = useState(1)
+    
+    
+    
     const handleEdit = (menuItemId) => {
         setIsEditing(true)
     }
@@ -69,12 +139,6 @@ const MenuItem = (props) => {
                 })
     }
 
-    if(subs.length > 0){
-        convertSubs(subs)
-    }
-
-
-    // console.log(item._id)
 
     return (
 
@@ -151,7 +215,8 @@ const MenuItem = (props) => {
                                 </Col>
                                 <Col xs={3} className='text-right'>
                                     <Form>
-                                        <Form.Group>
+                                        <Form.Group
+                                        onChange={(e) => handleChange(e)}>
                                         <Form.Control 
                                         type='text'
                                         name='price'
@@ -214,7 +279,12 @@ const MenuItem = (props) => {
 
                             <Row className='justify-content-center'>
                                 <Col xs={9}>
-                                    <Form.Group>
+                                    <Form.Group onChange={(e) => {
+                                        setEditedMenuItem({
+                                            ...editedMenuItem, 
+                                            'course' : e.target.value
+                                        })
+                                    }}>
                                         <Form.Select name='course'>
                                         <option id='pick-course'>Pick A Course</option>
                                         <option value='saladsAndStarters'>Crafted Salads & Starters</option>
@@ -305,84 +375,93 @@ const MenuItem = (props) => {
                                 />
                                 </Form.Group>
                             </Col>
-                        </Row>}
+                            </Row>}
                         
-                        {currentSubLevel >= 4 && <Row className='justify-content-center'>
-                            <Col className='mt-3' xs={5}>
-                            <Form.Group>
-                                <Form.Control 
-                                type="text" 
-                                placeholder="Enter Substitution" name='fourthSubAndUpcharge'
-                                onChange={(e) => {
-                                    setFourthSubAndUpcharge({...fourthSubAndUpcharge, title : e.target.value})
-                                }}
-                                />
-                            </Form.Group>
-                            </Col>
-                            <Col className='mt-3' xs={4}>
-                            <Form.Group>
-                            <Form.Control 
-                                type="text" 
-                                placeholder="Enter Price" 
-                                name='sub4-price'
-                                onChange={(e) => {
-                                setFourthSubAndUpcharge({...fourthSubAndUpcharge, price : e.target.value})
-                                }}
-                            />
-                            </Form.Group>
-                            </Col>
-                        </Row>}
-          
-                        {currentSubLevel >= 5 && <Row className='justify-content-center'>
-                            <Col className='mt-3' xs={5}>
+                            {currentSubLevel >= 4 && <Row className='justify-content-center'>
+                                <Col className='mt-3' xs={5}>
                                 <Form.Group>
                                     <Form.Control 
                                     type="text" 
-                                    placeholder="Enter Substitution" name='fifthSubAndUpcharge'
+                                    placeholder="Enter Substitution" name='fourthSubAndUpcharge'
                                     onChange={(e) => {
-                                        setFifthSubAndUpcharge({...fifthSubAndUpcharge, title : e.target.value})
+                                        setFourthSubAndUpcharge({...fourthSubAndUpcharge, title : e.target.value})
                                     }}
                                     />
                                 </Form.Group>
-                            </Col>
-                            <Col className='mt-3' xs={4}>
+                                </Col>
+                                <Col className='mt-3' xs={4}>
                                 <Form.Group>
                                 <Form.Control 
                                     type="text" 
                                     placeholder="Enter Price" 
-                                    name='sub5-price'
+                                    name='sub4-price'
                                     onChange={(e) => {
-                                    setFifthSubAndUpcharge({...fifthSubAndUpcharge, price : e.target.value})
+                                    setFourthSubAndUpcharge({...fourthSubAndUpcharge, price : e.target.value})
                                     }}
                                 />
                                 </Form.Group>
-                            </Col>
-                        </Row>}
+                                </Col>
+                            </Row>}
+          
+                            {currentSubLevel >= 5 && <Row className='justify-content-center'>
+                                <Col className='mt-3' xs={5}>
+                                    <Form.Group>
+                                        <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Substitution" name='fifthSubAndUpcharge'
+                                        onChange={(e) => {
+                                            setFifthSubAndUpcharge({...fifthSubAndUpcharge, title : e.target.value})
+                                        }}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col className='mt-3' xs={4}>
+                                    <Form.Group>
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Price" 
+                                        name='sub5-price'
+                                        onChange={(e) => {
+                                        setFifthSubAndUpcharge({...fifthSubAndUpcharge, price : e.target.value})
+                                        }}
+                                    />
+                                    </Form.Group>
+                                </Col>
+                            </Row>}
         
-          {currentSubLevel <= 4 && <Row className='justify-content-end mt-3'>
-          <Col xs={2}>
-            <p onClick={() => {
-              setCurrentSubLevel(currentSubLevel + 1)
-            }}>+Add Another</p>
-          </Col>
-          </Row>}
+                            {currentSubLevel <= 4 && <Row className='justify-content-end m-3' xs={2}>
+                            <Col xs={2}>
+                                <p onClick={() => {
+                                setCurrentSubLevel(currentSubLevel + 1)
+                                }}>+Add Another</p>
+                            </Col>
+                            </Row>}
 
-                            <Row className='justify-content-center text-center my-5'>
+                            <Row className='justify-content-center text-center'>
                                 <Col xs={4}>
                                     <Button
                                         variant='success'
+                                        onClick={(e) => {
+                                            submitEdit(e)}
+                                        }
                                     >Save</Button>
                                 </Col>
                                 <Col xs={4}>
                                     <Button
                                         variant='danger'
-                                        onClick={(e) => setIsEditing(false)}
+                                        onClick={(e) => {
+                                            setEditedMenuItem({})
+                                            setAllergyWarnings([])
+                                            setFirstSubAndUpcharge({})
+                                            setSecondSubAndUpcharge({})
+                                            setThirdSubAndUpcharge({})
+                                            setFourthSubAndUpcharge({})
+                                            setFifthSubAndUpcharge({})
+                                            setIsEditing(false)
+                                        }}
                                     >Cancel</Button>
                                 </Col>
                             </Row>
-            
-            
-            
                         </Container>
         }
 

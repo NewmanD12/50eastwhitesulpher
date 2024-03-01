@@ -101,7 +101,6 @@
 
     .menu-icon {
         position: absolute;
-        /* margin-left: 42%; */
         display: block;
         left: 80%;
         top: 20%;
@@ -139,28 +138,28 @@
     }
 
     #hamburger {
-        text-align: right;
+      text-align: right;
     }
 
     #bar1 {
-        height: 8px;
-        width: 60px;
-        background-color: #274663;
-        margin-top: 30px;
+      height: 8px;
+      width: 60px;
+      background-color: #274663;
+      margin-top: 30px;
     }
     
     #bar2 {
-        height: 8px;
-        width: 60px;
-        margin-top: 5px;
-        background-color: #274663;
+      height: 8px;
+      width: 60px;
+      margin-top: 5px;
+      background-color: #274663;
     }
     
     #bar3 {
-        height: 8px;
-        width: 60px;
-        margin-top: 5px;
-        background-color: #274663;
+      height: 8px;
+      width: 60px;
+      margin-top: 5px;
+      background-color: #274663;
     }
 
     #all-pages-link{
