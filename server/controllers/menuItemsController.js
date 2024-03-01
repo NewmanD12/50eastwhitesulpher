@@ -69,8 +69,28 @@ async function deleteMenuItem(req, res, next){
     }
 }
 
+async function editMenuItem(req, res, next){
+    try{
+        const menuItemId = req.params.menuItemId
+        const editedMenuItem = req.body
+        const updatedMenuItem = await MenuItem.findByIdAndUpdate(menuItemId, editedMenuItem)
+
+        res.json({
+            success : true,
+            updatedMenuItem : updatedMenuItem
+        })
+    }
+    catch (e){
+        res.json({
+            success : false,
+            error : e.toString()
+        })
+    }
+}
+
 module.exports = {
     createMenuItem, 
     allMenuItems, 
-    deleteMenuItem
+    deleteMenuItem, 
+    editMenuItem
 }
