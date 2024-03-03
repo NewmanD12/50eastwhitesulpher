@@ -101,10 +101,6 @@ export const AuthProvider = ({ children }) => {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-  };
-
 const setLSUserData = (token, userName, userID = {}) => {
   localStorage.setItem(
     import.meta.env.VITE_TOKEN_HEADER_KEY,
@@ -122,3 +118,8 @@ const getLSUserData = () => {
     localStorage.getItem(import.meta.env.VITE_TOKEN_HEADER_KEY)
   );
 };
+
+export const useAuth = () => {
+    return useContext(AuthContext);
+};
+

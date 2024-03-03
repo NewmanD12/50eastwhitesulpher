@@ -29,6 +29,7 @@
     list-style-type: none;
     position: absolute;
     right: 45px;
+    z-index: 1;
   }
   
   .nav-elements ul li:not(:last-child) {

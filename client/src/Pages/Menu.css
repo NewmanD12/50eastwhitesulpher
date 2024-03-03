@@ -1,7 +1,11 @@
 #lunch-menu-body, #dinner-menu-body {
-    background-color: #f6f7ed;
+    background-image: radial-gradient(white, olive);
     color : #1a2536;
     padding-top: 50px;
+}
+
+.course-containers{
+    background-color: #869451;
 }
 
 .course-headers{

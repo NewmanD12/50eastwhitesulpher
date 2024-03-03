@@ -56,7 +56,7 @@ const LunchMenu = (props) => {
             <Container fluid id='lunch-menu-body'>
 
                 <div>
-                    <Row className='justify-content-center text-center m-3/Volumes/STORE N GO/Chef Photos'>
+                    <Row className='justify-content-center text-center m-3'>
                         <Col>
                         <h1 
                             id='switch-menu'
@@ -68,7 +68,7 @@ const LunchMenu = (props) => {
                     </Row>
                 </div>
 
-                <div id='starters-div'>
+                <div id='starters-div' className='course-containers'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='app-header' className='course-headers'>Crafted Salads & Starters
                         </h1>
@@ -88,7 +88,7 @@ const LunchMenu = (props) => {
                     </Row>
                 </div>
                 
-                <div id='sandwiches-and-pies-div' className='mt-3'>
+                <div id='sandwiches-and-pies-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='sandwiches-and-pies-header' className='course-headers'>Sandwiches & Pies
                         </h1>
@@ -113,7 +113,7 @@ const LunchMenu = (props) => {
                     </Row>
                 </div>
 
-                <div id='bowls-div' className='mt-3'>
+                <div id='bowls-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='bowls-header' className='course-headers'>Bowls
                         </h1>                        
@@ -133,7 +133,7 @@ const LunchMenu = (props) => {
                     </Row>
                 </div>
 
-                <div id='desserts-div' className='mt-3'>
+                <div id='desserts-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='desserts-header' className='course-headers'>Desserts
                         </h1>                        
