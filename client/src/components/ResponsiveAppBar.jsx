@@ -12,9 +12,7 @@ function ResponsiveAppBar() {
   const navigate = useNavigate()
   const auth = useAuth();
   const [showNavbar, setShowNavbar] = useState(false)
-  const pages = ["About", "Menu", "Tasting Room", "Gallery", "Local Farmers", "Contact"];
-  // console.log(auth)
-
+  
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
   }
@@ -38,38 +36,46 @@ function ResponsiveAppBar() {
                 </div>
               </Col>
               <Col id='wide-nav'>
-                <div className={`nav-elements  ${showNavbar && 'active'}`}>
+                <div id='nav-elements' className={`nav-elements  ${showNavbar && 'active'}`}>
                   <ul>
 
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/">Home</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/about">About</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/menu">Menu</NavLink>
                                         </li>}
 
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/tasting-room">Tasting Room</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/gallery">Gallery</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li>
+                    {!auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to="/localfarmers">Local Farmers</NavLink>
                                         </li>}
-                    
-                    {!auth.userToken && <li>
-                                          <NavLink to="/contact">Contact</NavLink>
-                                        </li>}
 
-                    {auth.userToken && <li className='dropdown'   id='all-pages-link' onMouseEnter={() => {
+                    {auth.userToken && <li className='dropdown' id='all-pages-link' onMouseEnter={() => {
                                           const dropdown = document.getElementById('dropdown-content')
                                           dropdown.style.display = 'flex'
                                         }}
@@ -84,46 +90,73 @@ function ResponsiveAppBar() {
                                           <div 
                                           id='dropdown-content'
                                           >
-                                            <NavLink to='/' className='other-pages-links'>Home</NavLink>
-                                            <NavLink to='/about' className='other-pages-links'>About</NavLink>
-                                            <NavLink to='/menu' className='other-pages-links'>Menu</NavLink>
-                                            <NavLink to='/tasting-room' className='other-pages-links'>Tasting Room</NavLink>
-                                            <NavLink to='/gallery' className='other-pages-links'>Gallery</NavLink>
-                                            <NavLink to='/localfarmers' className='other-pages-links'>Local Farmers</NavLink>
-                                            <NavLink to='/contact' className='other-pages-links'>Contact</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/' className='other-pages-links'>Home</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/about' className='other-pages-links'>About</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/menu' className='other-pages-links'>Menu</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/tasting-room' className='other-pages-links'>Tasting Room</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/gallery' className='other-pages-links'>Gallery</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
+                                            }} to='/localfarmers' className='other-pages-links'>Local Farmers</NavLink>
                                           </div>
                                         </li>
                                         }
                     
-                    {auth.userToken && <li className='condensed-dropdown'>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }} className='condensed-dropdown'>
                                         <NavLink to='/'>Home</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li className='condensed-dropdown'>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }} className='condensed-dropdown'>
                                         <NavLink to='/about'>About</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li className='condensed-dropdown'>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }} className='condensed-dropdown'>
                                         <NavLink to='/menu'>Menu</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li className='condensed-dropdown'>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }} className='condensed-dropdown'>
                                         <NavLink to='/gallery'>Gallery</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li className='condensed-dropdown'>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }} className='condensed-dropdown'>
                                         <NavLink to='/localfarmers'>Local Farmers</NavLink>
-                                      </li>}
-                    
-                    {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/contact'>Contact</NavLink>
-                                      </li>}                    
+                                      </li>}                   
 
-                    {auth.userToken && <li>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to='/admin'>Admin</NavLink>
                                         </li>}
 
-                    {auth.userToken && <li>
+                    {auth.userToken && <li onClick={() => {
+                      handleShowNavbar()
+                    }}>
                                           <NavLink to='/' onClick={() => auth.logout()}>Logout</NavLink>
                                         </li>}
                   </ul>

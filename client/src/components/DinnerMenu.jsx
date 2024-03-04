@@ -32,7 +32,7 @@ const DinnerMenu = (props) => {
         }
     })
 
-    console.log(starters)
+    // console.log(starters)
 
     dinnerItems.map((item) => {
         if(item.mealPeriodAndPrices[0].course === 'starters' || item.mealPeriodAndPrices[1].course === 'starters'){
@@ -134,6 +134,46 @@ const DinnerMenu = (props) => {
                         <Col xs={8}>
                             <h3>Sides: Fries, Sweet Potatoes, Pasta Salad, Asian Slaw, Vegetable of the Day</h3>
                         </Col>
+                    </Row>
+                </div>
+                
+                <div id='comforts-div' className='mt-3'>
+                    <Row className='justify-content-center text-center m-3'>
+                        <h1 id='comforts-header' className='course-headers'>Comfort
+                        </h1>                        
+                    </Row>
+                    <Row className='justify-content-center'>
+                        {comfort.length >= 1 && comfort.map((item, index) => {
+                                return <Col md={6} key={index}>
+                                            <MenuItem 
+                                                item={item} 
+                                                key={index} 
+                                                currentMenu={currentMenu}
+                                                menuItemsEndpoint={menuItemsEndpoint}
+                                            />
+                                        </Col>
+                            })
+                        }   
+                    </Row>
+                </div>
+                
+                <div id='entrees-div' className='mt-3'>
+                    <Row className='justify-content-center text-center m-3'>
+                        <h1 id='entrees-header' className='course-headers'>Entrees
+                        </h1>                        
+                    </Row>
+                    <Row className='justify-content-center'>
+                        {entrees.length >= 1 && entrees.map((item, index) => {
+                                return <Col md={6} key={index}>
+                                            <MenuItem 
+                                                item={item} 
+                                                key={index} 
+                                                currentMenu={currentMenu}
+                                                menuItemsEndpoint={menuItemsEndpoint}
+                                            />
+                                        </Col>
+                            })
+                        }   
                     </Row>
                 </div>
                 

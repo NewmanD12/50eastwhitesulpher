@@ -9,17 +9,17 @@ const Footer = () => {
     }
 
     return (  
-      <Container fluid id='footer-container' className='mt-4'>
+      <Container fluid id='footer-container' className='mt-5'>
         <Row className='justify-content-center text-center'>
-          <Col sm={3} className='mt-3'>
+          <Col md={4} className='mt-3'>
             <img src='/gustardsBistroBlack.png' id='footer-logo'/>
           </Col>
-          <Col sm={3} className='footer-cols mt-5'>
+          <Col md={4} className='footer-cols mt-5'>
             <p>50 East Main Street</p>
             <p>White Sulphur Springs, WV 24986</p>
-            <CallTo phone="+13045362274">{`(304)536-2274`}</CallTo>
+            <CallTo phone="+13045362274">{`(304) 536-2274`}</CallTo>
           </Col>
-          <Col sm={3} className='footer-cols mt-5' id='hours-of-operation-col'>
+          <Col md={4} className='footer-cols mt-5' id='hours-of-operation-col'>
             <h4>Hours Of Operation</h4>
             <p>Monday - Thursday: 10am - 7pm</p>
             <p>Friday - Saturday: 10am - 9pm</p>

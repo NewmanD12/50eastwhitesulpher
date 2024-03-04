@@ -10,7 +10,7 @@ const WelcomeImgCarousel = () => {
     return (
 
         <div id='carousel-div'>
-            <Carousel className='mt-1' id='carousel'>
+            <Carousel className='mt-3' id='carousel' controls={false}>
 
             {imageNames.map((name, index) => {
                 return <Carousel.Item key={index}>

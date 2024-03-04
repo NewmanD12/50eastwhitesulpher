@@ -294,25 +294,51 @@ const MenuItem = (props) => {
                                 </Col>
                             </Row>
 
-                            <Row className='justify-content-center'>
-                                <Col xs={9}>
-                                    <Form.Group onChange={(e) => {
-                                        setEditedMenuItem({
-                                            ...editedMenuItem, 
-                                            'course' : e.target.value
-                                        })
-                                    }}>
-                                        <Form.Select name='course'>
-                                        <option id='pick-course'>Pick A Course</option>
-                                        <option value='saladsAndStarters'>Crafted Salads & Starters</option>
-                                        <option value='sandwichesAndPies'>Sandwiches & Pies</option>
-                                        <option value='sides'>Sides</option>
-                                        <option value='bowls'>Bowls</option>
-                                        <option value='desserts'>Desserts</option>
-                                        </Form.Select>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                            {currentMenu === 'lunch' && <Row className='justify-content-center'>
+                                                            <Col xs={9}>
+                                                                <Form.Group onChange={(e) => {
+                                                                    setEditedMenuItem({
+                                                                        ...editedMenuItem, 
+                                                                        'course' : e.target.value
+                                                                    })
+                                                                }}>
+                                                                    <Form.Select name='course'>
+                                                                    <option id='pick-course'>Pick A Course</option>
+                                                                    <option value='saladsAndStarters'>Crafted Salads & Starters</option>
+                                                                    <option value='sandwichesAndPies'>Sandwiches & Pies</option>
+                                                                    <option value='sides'>Sides</option>
+                                                                    <option value='bowls'>Bowls</option>
+                                                                    <option value='desserts'>Desserts</option>
+                                                                    </Form.Select>
+                                                                </Form.Group>
+                                                            </Col>
+                                                        </Row>
+                            }
+
+                            {currentMenu === 'dinner' && <Row className='justify-content-center'>
+                                                            <Col xs={9}>
+                                                                <Form.Group onChange={(e) => {
+                                                                    setEditedMenuItem({
+                                                                        ...editedMenuItem, 
+                                                                        'course' : e.target.value
+                                                                    })
+                                                                }}>
+                                                                    <Form.Select name='course'>
+                                                                    <option id='pick-course'>Pick A Course</option>
+                                                                    <option value='starters'>Starters</option>
+                                                                    <option value='soupsAndSalads'>Crafted Soups and Salads</option>
+                                                                    <option value='sandwichesAndPies'>Sandwiches and Pies</option>
+                                                                    <option value='comfort'>Comfort</option>
+                                                                    <option value='entrees'>Entrees</option>
+                                                                    <option value='sides'>Sides</option>
+                                                                    <option value='desserts'>Desserts</option>
+                                                                    </Form.Select>
+                                                                </Form.Group>
+                                                            </Col>
+                                                        </Row>
+                            }
+
+                            
 
                             <Row className='justify-content-center'>
                                 <Col className='mt-3' xs={5}>
