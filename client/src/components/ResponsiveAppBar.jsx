@@ -2,10 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, NavLink } from "react-router-dom";
 import './ResponsiveAppBar.css'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Container, Row, Col } from 'react-bootstrap'
 import { useAuth } from '../Hooks/Auth';
-import Col from 'react-bootstrap/Col';
 
 
 
@@ -16,11 +14,6 @@ function ResponsiveAppBar() {
   const [showNavbar, setShowNavbar] = useState(false)
   const pages = ["About", "Menu", "Tasting Room", "Gallery", "Local Farmers", "Contact"];
   // console.log(auth)
-
-  const changePage = (page) => {
-    const convertedPage = page.toLowerCase().replaceAll(' ', '')
-    navigate(`/${convertedPage}`)
-  }
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
@@ -33,7 +26,7 @@ function ResponsiveAppBar() {
         <Container fluid>
             <Row id='nav-row-container'>
               <Col onClick={() => navigate('/')}>
-                <img src={`/gustardsbistro.png`} id='logo'></img>
+                <img src={`/gustardsBistroBlue.png`} id='logo'></img>
               </Col>
               <Col xs={2}  className='menu-icon' onClick={() => {
                 handleShowNavbar()

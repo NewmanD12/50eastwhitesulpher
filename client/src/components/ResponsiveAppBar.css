@@ -13,6 +13,7 @@
     position: absolute;
     width: 100%;
     box-shadow: 0px 4px 5px black;
+    z-index: 1;
   }
 
   #nav-row-container{
@@ -35,19 +36,22 @@
   .nav-elements ul li:not(:last-child) {
     margin-right: 35px;
     width: 70px;
+    z-index: 1;
   }
   
   .nav-elements ul a {
     font-size: 25px;
     font-weight: 400;
-    color: #274663;
+    color: rgb(71, 110, 162);
     text-decoration: none;
+    z-index: 1;
   }
   
   .nav-elements ul a.active {
-    color: #274663;
+    color: rgb(71, 110, 162);
     font-weight: 500;
     position: relative;
+    z-index: 1;
   }
   
   .nav-elements ul a.active::after {
@@ -56,7 +60,8 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #274663;
+    background-color: rgb(71, 110, 162);
+    z-index: 1;
   }
 
   #logo {
@@ -76,29 +81,32 @@
   #dropdown-content{
     display: none;
     flex-direction: column;
-    background-color: grey;
+    background-color: white;
     opacity: .8;
     text-align: end;
     width: 120%;
     padding-right: 10px;
+    z-index: 1;
   }
 
   .other-pages-links{
     color: white;
+    z-index: 1;
   }
 
   .condensed-dropdown{
     display: none;
+    z-index: 1;
   }
 
   #dropdown{
     color: white;
+    z-index: 1;
   }
 
 
 
 @media (max-width: 1200px) {
-
 
     .menu-icon {
         position: absolute;
@@ -110,32 +118,37 @@
     .condensed-dropdown{
       display: flex;
       text-decoration: none;
+      z-index: 1;
     }
 
     .nav-elements {
       position: absolute;
       right: 0;
       top: 150px;
-      background-color: grey;
+      background-color: white;
       width: 0px;
-      opacity: .8;
-      height: calc(100vh - 60px);
+      opacity: .9;
+      height: calc(91vh - 60px);
       transition: all 0.3s ease-in;
       overflow: hidden;
+      z-index: 1;
     }
   
     .nav-elements.active {
       width: 270px;
+      z-index: 1;
     }
   
     .nav-elements ul {
       display: flex;
       flex-direction: column;
+      z-index: 1;
     }
   
     .nav-elements ul li {
       margin-right: unset;
       margin-top: 22px;
+      z-index: 1;
     }
 
     #hamburger {
@@ -145,7 +158,7 @@
     #bar1 {
       height: 8px;
       width: 60px;
-      background-color: #274663;
+      background-color: rgb(71, 110, 162);
       margin-top: 30px;
     }
     
@@ -153,21 +166,21 @@
       height: 8px;
       width: 60px;
       margin-top: 5px;
-      background-color: #274663;
+      background-color: rgb(71, 110, 162);
     }
     
     #bar3 {
       height: 8px;
       width: 60px;
       margin-top: 5px;
-      background-color: #274663;
+      background-color: rgb(71, 110, 162);
     }
 
     #all-pages-link{
       display: none;
     }
 
-    #wide-nave{
+    /* #wide-nave{
       display: none;
-    }
+    } */
   }
