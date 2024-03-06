@@ -28,7 +28,7 @@ const Footer = () => {
         </Row>
         <Row className='justify-content-center text-center'>
           <Col>
-            <p>©2024 Gustard's Bistro</p>
+            <p>©2024 All Rights Reserved</p>
           </Col>
         </Row>
         

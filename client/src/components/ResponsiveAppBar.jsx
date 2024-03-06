@@ -39,39 +39,27 @@ function ResponsiveAppBar() {
                 <div id='nav-elements' className={`nav-elements  ${showNavbar && 'active'}`}>
                   <ul>
 
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/">Home</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/about">About</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/menu">Menu</NavLink>
                                         </li>}
 
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/tasting-room">Tasting Room</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/gallery">Gallery</NavLink>
                                         </li>}
                     
-                    {!auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {!auth.userToken && <li>
                                           <NavLink to="/localfarmers">Local Farmers</NavLink>
                                         </li>}
 
@@ -118,45 +106,31 @@ function ResponsiveAppBar() {
                                         </li>
                                         }
                     
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }} className='condensed-dropdown'>
+                    {auth.userToken && <li className='condensed-dropdown'>
                                         <NavLink to='/'>Home</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }} className='condensed-dropdown'>
+                    {auth.userToken && <li className='condensed-dropdown'>
                                         <NavLink to='/about'>About</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }} className='condensed-dropdown'>
+                    {auth.userToken && <li className='condensed-dropdown'>
                                         <NavLink to='/menu'>Menu</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }} className='condensed-dropdown'>
+                    {auth.userToken && <li className='condensed-dropdown'>
                                         <NavLink to='/gallery'>Gallery</NavLink>
                                       </li>}
                     
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }} className='condensed-dropdown'>
+                    {auth.userToken && <li className='condensed-dropdown'>
                                         <NavLink to='/localfarmers'>Local Farmers</NavLink>
                                       </li>}                   
 
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {auth.userToken && <li>
                                           <NavLink to='/admin'>Admin</NavLink>
                                         </li>}
 
-                    {auth.userToken && <li onClick={() => {
-                      handleShowNavbar()
-                    }}>
+                    {auth.userToken && <li>
                                           <NavLink to='/' onClick={() => auth.logout()}>Logout</NavLink>
                                         </li>}
                   </ul>
