@@ -7,7 +7,7 @@ import './Gallery.css'
 
 const Gallery = () => {
 
-  const [showCarousel, setShowCarousel] = useState(true)
+  const [showCarousel, setShowCarousel] = useState(false)
 
   const imgNames = ['garlicShot', 'flamingPan', 'basil', 'drippy', 'plating', 'platingFish', 'jqSalt', 'upperJQSalt', 'finishingTouches']
 
@@ -17,6 +17,7 @@ const Gallery = () => {
                             <Row className='justify-content-center text-center'>
                               <Col 
                                 lg={12}
+                                id='modal-col'
                               >
                                 <Modal
                                   size="xl"
@@ -30,7 +31,7 @@ const Gallery = () => {
                                         return  <Carousel.Item>
                                                   <img
                                                     src={`${name}.jpg`} 
-                                                    className='gallery-imgs' 
+                                                    className='gallery-carousel-imgs' 
                                                     id={name}
                                                   />
                                                 </Carousel.Item>
