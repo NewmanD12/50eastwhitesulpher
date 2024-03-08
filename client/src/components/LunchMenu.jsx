@@ -27,7 +27,8 @@ const LunchMenu = (props) => {
         }
     })
 
-    // console.log(menuItemsEndpoint)
+    // console.log(lunchItems)
+
     lunchItems.map((item) => {
         // console.log(item.mealPeriodAndPrices[0].mealPeriod)
         if(item.mealPeriodAndPrices[0].course === 'saladsAndStarters' || item.mealPeriodAndPrices[1].course === 'saladsAndStarters'){
@@ -47,9 +48,17 @@ const LunchMenu = (props) => {
         }
     })
 
+    // console.log(sandwichesAndPies)
+    // console.log(sides)
 
-    // console.log(lunchItems)
-    // console.log(saladsAndStarters)
+    let sidesString = sides.map((item) => {
+        return item.title
+    })
+    try {
+        sidesString = sidesString.join(', ')
+    } catch (e) {
+        console.log(e.toString())
+    }
 
     return (
         <>
@@ -58,12 +67,14 @@ const LunchMenu = (props) => {
                 <div>
                     <Row className='justify-content-center text-center m-3'>
                         <Col>
-                        <h1 
-                            id='switch-menu'
-                            onClick={(e) => {
-                                setCurrentMenu('dinner')
-                            }}
-                        >Click Here To See The Dinner Menu</h1>
+                            <h1 
+                                id='switch-menu'
+                                onClick={(e) => {
+                                    setCurrentMenu('dinner')
+                                }}
+                            >
+                                Click Here To See The Dinner Menu
+                            </h1>
                         </Col>
                     </Row>
                 </div>
@@ -108,7 +119,7 @@ const LunchMenu = (props) => {
                     </Row>
                     <Row className='justify-content-center text-center'>
                         <Col xs={8}>
-                            <h3>Sides: Fries, Sweet Potatoes, Pasta Salad, Asian Slaw, Vegetable of the Day</h3>
+                            <h3>Sides: {sidesString}</h3>
                         </Col>
                     </Row>
                 </div>

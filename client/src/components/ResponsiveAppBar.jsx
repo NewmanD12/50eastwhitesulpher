@@ -107,31 +107,53 @@ function ResponsiveAppBar() {
                                         }
                     
                     {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/'>Home</NavLink>
+                                        <NavLink to='/' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>Home</NavLink>
                                       </li>}
                     
                     {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/about'>About</NavLink>
+                                        <NavLink to='/about' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>About</NavLink>
                                       </li>}
                     
                     {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/menu'>Menu</NavLink>
+                                        <NavLink to='/menu' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>Menu</NavLink>
                                       </li>}
                     
                     {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/gallery'>Gallery</NavLink>
+                                        <NavLink to='/gallery' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>Gallery</NavLink>
                                       </li>}
                     
                     {auth.userToken && <li className='condensed-dropdown'>
-                                        <NavLink to='/localfarmers'>Local Farmers</NavLink>
+                                        <NavLink to='/localfarmers' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>Local Farmers</NavLink>
                                       </li>}                   
 
                     {auth.userToken && <li>
-                                          <NavLink to='/admin'>Admin</NavLink>
+                                          <NavLink to='/admin' onClick={(e) => {
+                                            const menu = document.getElementsByClassName('condensed-dropdown')
+                                            menu.style.display = 'none'
+                                          }}>Admin</NavLink>
                                         </li>}
 
                     {auth.userToken && <li>
-                                          <NavLink to='/' onClick={() => auth.logout()}>Logout</NavLink>
+                                          <NavLink to='/' onClick={() => {
+                                            const menu = document.getElementsByClassName('condensed-dropdown')
+                                            menu.style.display = 'none'
+                                            auth.logout()
+                                          }}>Logout</NavLink>
                                         </li>}
                   </ul>
                 </div>

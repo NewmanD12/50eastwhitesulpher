@@ -27,8 +27,8 @@ const Gallery = () => {
                                 >
                                   <Modal.Body>
                                     <Carousel>
-                                      {imgNames.map((name) => {
-                                        return  <Carousel.Item>
+                                      {imgNames.map((name, index) => {
+                                        return  <Carousel.Item key={index}>
                                                   <img
                                                     src={`${name}.jpg`} 
                                                     className='gallery-carousel-imgs' 

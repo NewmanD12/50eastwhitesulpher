@@ -68,6 +68,7 @@
     height: 100px;
     position: relative;
     top: -20px;
+    cursor: pointer;
   }
 
   #wide-nav {

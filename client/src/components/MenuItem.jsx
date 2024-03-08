@@ -480,7 +480,7 @@ const MenuItem = (props) => {
                             </Col>
                             </Row>}
 
-                            <Row className='justify-content-center text-center'>
+                            <Row className='justify-content-center text-center mb-5'>
                                 <Col xs={4}>
                                     <Button
                                         variant='success'

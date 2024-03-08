@@ -32,7 +32,7 @@ const DinnerMenu = (props) => {
         }
     })
 
-    // console.log(starters)
+
 
     dinnerItems.map((item) => {
         if(item.mealPeriodAndPrices[0].course === 'starters' || item.mealPeriodAndPrices[1].course === 'starters'){
@@ -56,8 +56,16 @@ const DinnerMenu = (props) => {
         else if(item.mealPeriodAndPrices[0].course === 'desserts' || item.mealPeriodAndPrices[1].course === 'desserts'){
             desserts = [...desserts, item]
         }
-
     })
+
+    let sidesString = sides.map((item) => {
+        return item.title
+    })
+    try {
+        sidesString = sidesString.join(', ')
+    } catch (e) {
+        console.log(e.toString())
+    }
 
     return (
         <>
@@ -132,7 +140,7 @@ const DinnerMenu = (props) => {
                     </Row>
                     <Row className='justify-content-center text-center'>
                         <Col xs={8}>
-                            <h3>Sides: Fries, Sweet Potatoes, Pasta Salad, Asian Slaw, Vegetable of the Day</h3>
+                            <h3>Sides: {sidesString}</h3>
                         </Col>
                     </Row>
                 </div>
