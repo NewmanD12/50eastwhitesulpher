@@ -13,6 +13,7 @@ function ResponsiveAppBar() {
   const auth = useAuth();
   const [showNavbar, setShowNavbar] = useState(false)
   
+  
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
   }
@@ -150,9 +151,9 @@ function ResponsiveAppBar() {
 
                     {auth.userToken && <li>
                                           <NavLink to='/' onClick={() => {
+                                            auth.logout()
                                             const menu = document.getElementsByClassName('condensed-dropdown')
                                             menu.style.display = 'none'
-                                            auth.logout()
                                           }}>Logout</NavLink>
                                         </li>}
                   </ul>

@@ -1,16 +1,14 @@
 #lunch-menu-body, #dinner-menu-body {
-    background-image: radial-gradient(white, olive);
+    background-image: radial-gradient(white, white, rgb(90, 121, 147));
     color : #1a2536;
     padding-top: 50px;
 }
 
-.course-containers{
-    background-color: #869451;
-}
+
 
 .course-headers{
     font-size: 300%;
-    
+    font-weight: bold;
 }
 
 #apps-div, #starters-div , #sandwiches-and-pies-div, #bowls-div, #desserts-div, #comforts-div, #entrees-div {

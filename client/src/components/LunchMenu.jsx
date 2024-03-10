@@ -27,8 +27,6 @@ const LunchMenu = (props) => {
         }
     })
 
-    // console.log(lunchItems)
-
     lunchItems.map((item) => {
         // console.log(item.mealPeriodAndPrices[0].mealPeriod)
         if(item.mealPeriodAndPrices[0].course === 'saladsAndStarters' || item.mealPeriodAndPrices[1].course === 'saladsAndStarters'){
@@ -47,9 +45,6 @@ const LunchMenu = (props) => {
             desserts = [...desserts, item]
         }
     })
-
-    // console.log(sandwichesAndPies)
-    // console.log(sides)
 
     let sidesString = sides.map((item) => {
         return item.title
@@ -81,8 +76,8 @@ const LunchMenu = (props) => {
 
                 <div id='starters-div' className='course-containers'>
                     <Row className='justify-content-center text-center m-3'>
-                        <h1 id='app-header' className='course-headers'>Crafted Salads & Starters
-                        </h1>
+                        <h2 id='app-header' className='course-headers'>Crafted Salads & Starters
+                        </h2>
                     </Row>
                     <Row className='justify-content-center'>
                         {saladsAndStarters.length >= 1 && saladsAndStarters.map((item, index) => {
@@ -101,8 +96,8 @@ const LunchMenu = (props) => {
                 
                 <div id='sandwiches-and-pies-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
-                        <h1 id='sandwiches-and-pies-header' className='course-headers'>Sandwiches & Pies
-                        </h1>
+                        <h3 id='sandwiches-and-pies-header' className='course-headers'>Sandwiches & Pies
+                        </h3>
                     </Row>
                     <Row className='justify-content-center'>
                         {sandwichesAndPies.length >= 1 && sandwichesAndPies.map((item, index) => {

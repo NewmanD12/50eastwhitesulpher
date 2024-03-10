@@ -1,0 +1,29 @@
+#aboutLandingPhoto{
+    width: 55%;
+    border-radius: 3%;
+    border: 5px solid maroon;
+}
+
+#flameyDripAbout {
+    width: 75%;
+    border-radius: 3%;
+    border: 5px solid maroon;
+}
+
+
+@media (max-width: 765px){
+
+    #secondRow{
+        display: flex;
+        
+        justify-content: center;
+        background-color: pink;
+        text-align: center;
+    }
+
+
+
+
+
+
+}

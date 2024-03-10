@@ -1,3 +1,7 @@
 .button-cols{
     display: none;
 }
+
+#addAnotherButton{
+    cursor: pointer;
+}

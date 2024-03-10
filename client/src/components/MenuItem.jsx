@@ -182,7 +182,7 @@ const MenuItem = (props) => {
                                                     className='edit-row justify-content-end' 
                                                     id={`${item._id}-edit-row`}
                                                 >
-                                                    <Col xs={3} className='button-cols' id={`${item._id}-edit-col`}>
+                                                    <Col xs={2} className='button-cols' id={`${item._id}-edit-col`}>
                                                         <Button 
                                                             variant='warning'
                                                             onClick={() => {
@@ -190,7 +190,7 @@ const MenuItem = (props) => {
                                                             }}    
                                                         >Edit</Button>
                                                     </Col>
-                                                    <Col xs={3} className='button-cols' id={`${item._id}-delete-col`}>
+                                                    <Col xs={2} className='button-cols' id={`${item._id}-delete-col`}>
                                                         <Button 
                                                             variant='danger'
                                                             onClick={() => {
@@ -472,8 +472,8 @@ const MenuItem = (props) => {
                                 </Col>
                             </Row>}
         
-                            {currentSubLevel <= 4 && <Row className='justify-content-end m-3' xs={2}>
-                            <Col xs={2}>
+                            {currentSubLevel <= 4 && <Row className='justify-content-end m-3' id='addAnotherButton' xs={2}>
+                            <Col xs={3}>
                                 <p onClick={() => {
                                 setCurrentSubLevel(currentSubLevel + 1)
                                 }}>+Add Another</p>

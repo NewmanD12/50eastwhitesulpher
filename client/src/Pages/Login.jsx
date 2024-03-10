@@ -54,16 +54,22 @@ const Login = () => {
 
                 {errorMessage && <p id="password-error">{errorMessage}</p>}
     
-                <Button 
-                  id="login-button"
-                  variant="primary" type="submit"
-                  onClick={async (e) => {
-                    e.preventDefault()
-                    handleLogin()
-                  }}
-                >
-                  Login
-                </Button>
+                <Row className="justify-content-center text-center">
+                  <Col xs={6}>
+                    <Button 
+                      id="login-button"
+                      variant="primary" type="submit"
+                      onClick={async (e) => {
+                        e.preventDefault()
+                        handleLogin()
+                      }}
+                      className="text-center mt-5"
+                    >
+                      Login
+                    </Button>
+                  </Col>                
+                </Row>
+                
               </Form>
             </Col>
           </Row>
