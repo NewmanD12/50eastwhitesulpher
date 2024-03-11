@@ -14,6 +14,7 @@ const LunchMenu = (props) => {
     let sides = []
     let bowls = []
     let desserts = []
+    const abbrevLegend = 'GF = Gluten Free, V = Vegan, VEG = Vegetarian, DF = Dairy Free, SF = Shellfish'
 
     const addToLunchItems = (item) => {
         lunchItems = [...lunchItems, item]
@@ -78,6 +79,7 @@ const LunchMenu = (props) => {
                     <Row className='justify-content-center text-center m-3'>
                         <h2 id='app-header' className='course-headers'>Crafted Salads & Starters
                         </h2>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {saladsAndStarters.length >= 1 && saladsAndStarters.map((item, index) => {
@@ -98,6 +100,7 @@ const LunchMenu = (props) => {
                     <Row className='justify-content-center text-center m-3'>
                         <h3 id='sandwiches-and-pies-header' className='course-headers'>Sandwiches & Pies
                         </h3>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {sandwichesAndPies.length >= 1 && sandwichesAndPies.map((item, index) => {
@@ -122,7 +125,8 @@ const LunchMenu = (props) => {
                 <div id='bowls-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='bowls-header' className='course-headers'>Bowls
-                        </h1>                        
+                        </h1> 
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {bowls.length >= 1 && bowls.map((item, index) => {
@@ -142,7 +146,8 @@ const LunchMenu = (props) => {
                 <div id='desserts-div' className='course-containers mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='desserts-header' className='course-headers'>Desserts
-                        </h1>                        
+                        </h1>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {desserts.length >= 1 && desserts.map((item, index) => {

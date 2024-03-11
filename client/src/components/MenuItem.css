@@ -5,3 +5,7 @@
 #addAnotherButton{
     cursor: pointer;
 }
+
+.allergyWarnings{
+    font-size: 60%;
+}

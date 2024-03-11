@@ -14,7 +14,6 @@ const MenuItem = (props) => {
 
 
     const [isEditing, setIsEditing] = useState(false)
-    const [itemCopy, setItemCopy] = useState(item)
     
     ///////////////////////////////////////////
     // THIS BLOCK IS FOR FINDING THE MENU PRICE AND CONVERTING THE SUBS INTO A STRING
@@ -57,6 +56,32 @@ const MenuItem = (props) => {
     
     ///////////////////////////////////////////
     // console.log(item)
+
+    ///////////////////////////////////////////
+
+    // console.log(item.allergyWarnings)
+    const abbreviatedAllergyWarnings = item.allergyWarnings.map((warning) => {
+        let abbreviatedWarning = ''
+        if(warning === 'vegetarian'){
+            abbreviatedWarning = 'VEG'
+        }
+        if(warning === 'vegan'){
+            abbreviatedWarning = 'V'
+        }
+        if(warning === 'dairy free'){
+            abbreviatedWarning = 'DF'
+        }
+        if(warning === 'gluten free'){
+            abbreviatedWarning = 'GF'
+        }
+        if(warning === 'shellfish'){
+            abbreviatedWarning = 'SF'
+        }
+
+        return abbreviatedWarning
+    })
+
+    ///////////////////////////////////////////    
 
     ///////////////////////////////////////////
     // THIS BLOCK IS FOR COLLECTING AND SENDING THE EDITED MENU ITEM TO THE BACKEND
@@ -142,7 +167,7 @@ const MenuItem = (props) => {
     
     
     
-    const handleEdit = (menuItemId) => {
+    const handleEdit = () => {
         setIsEditing(true)
     }
 
@@ -155,7 +180,6 @@ const MenuItem = (props) => {
                     window.location.reload(false)
                 })
     }
-
 
     return (
 
@@ -205,6 +229,13 @@ const MenuItem = (props) => {
                                 <Col id='menu-item-title' xs={8}>{item.title}</Col>
                                 <Col id='menu-item-price'>${price}</Col>
                             </Row>
+
+                            {abbreviatedAllergyWarnings.length > 0 && <Row>
+                                <Col>
+                                    <p className='allergyWarnings'>[{abbreviatedAllergyWarnings.join(', ')}]</p>
+                                </Col>
+                            </Row>}
+                            
                             <Row>
                                 <Col>
                                     <p id='menu-item-desc'>{item.description}</p>
@@ -270,6 +301,13 @@ const MenuItem = (props) => {
                                         id='vegan'
                                         label='Vegan'
                                         name='vegan'
+                                        />
+
+                                        <Form.Check // prettier-ignore
+                                        type='checkbox'
+                                        id='shellfish'
+                                        label='Shellfish'
+                                        name='shellfish'
                                         />
                                         
                                     </Form.Group>

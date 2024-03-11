@@ -1,8 +1,11 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import './Footer.css'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+
+    const navigate = useNavigate()
 
     const CallTo = ({phone, children}) => {
       return <a href={`tel:${phone}`} id='phoneNumber'>{children}</a>;
@@ -11,7 +14,7 @@ const Footer = () => {
     return (  
       <Container fluid id='footer-container' className='mt-5'>
         <Row className='justify-content-center text-center'>
-          <Col md={4} className='mt-3'>
+          <Col md={4} className='mt-3' onClick={() => navigate('/')}>
             <img src='/gustardsBistroBlack.png' id='footer-logo'/>
           </Col>
           <Col md={4} className='footer-cols mt-5'>
