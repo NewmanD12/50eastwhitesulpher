@@ -191,8 +191,9 @@ const CreateNewMenuItem = (props) => {
                   <option id='pick-course'>Pick A Course</option>
                   <option value='saladsAndStarters'>Crafted Salads & Starters</option>
                   <option value='sandwichesAndPies'>Sandwiches & Pies</option>
-                  <option value='sides'>Sides</option>
                   <option value='bowls'>Bowls</option>
+                  <option value='kidsMenu'>Kids Menu</option>
+                  <option value='sides'>Sides</option>
                   <option value='desserts'>Desserts</option>
                   </Form.Select>
                 }
@@ -205,6 +206,7 @@ const CreateNewMenuItem = (props) => {
                   <option value='sandwichesAndPies'>Sandwiches & Pies</option>
                   <option value='comfort'>Comfort</option>
                   <option value='entrees'>Entrees</option>
+                  <option value='kidsMenu'>Kids Menu</option>
                   <option value='sides'>Sides</option>
                   <option value='desserts'>Desserts</option>
                   </Form.Select>

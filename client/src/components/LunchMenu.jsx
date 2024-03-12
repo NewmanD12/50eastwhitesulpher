@@ -20,7 +20,7 @@ const LunchMenu = (props) => {
         lunchItems = [...lunchItems, item]
     }
 
-    menuItems.map((item, index) => {
+    menuItems.map((item) => {
         let isLunchItem = item.mealPeriodAndPrices.map((item) => item.mealPeriod)
            
         if(isLunchItem.includes('lunch')){
@@ -58,7 +58,7 @@ const LunchMenu = (props) => {
 
     return (
         <>
-            <Container fluid id='lunch-menu-body'>
+            <Container fluid id='lunch-menu-body' className='py-5'>
 
                 <div>
                     <Row className='justify-content-center text-center m-3'>

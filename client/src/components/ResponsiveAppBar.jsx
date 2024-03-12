@@ -53,6 +53,10 @@ function ResponsiveAppBar() {
                                         </li>}
 
                     {!auth.userToken && <li>
+                                          <NavLink to="/kids-menu">Kids Menu</NavLink>
+                                        </li>}
+
+                    {!auth.userToken && <li>
                                           <NavLink to="/tasting-room">Tasting Room</NavLink>
                                         </li>}
                     
@@ -94,6 +98,10 @@ function ResponsiveAppBar() {
                                             <NavLink onClick={() => {
                                               const dropdown = document.getElementById('dropdown-content')
                                               dropdown.style.display = 'none'
+                                            }} to='/kids-menu' className='other-pages-links'>Kids Menu</NavLink>
+                                            <NavLink onClick={() => {
+                                              const dropdown = document.getElementById('dropdown-content')
+                                              dropdown.style.display = 'none'
                                             }} to='/tasting-room' className='other-pages-links'>Tasting Room</NavLink>
                                             <NavLink onClick={() => {
                                               const dropdown = document.getElementById('dropdown-content')
@@ -126,6 +134,13 @@ function ResponsiveAppBar() {
                                           const menu = document.getElementsByClassName('condensed-dropdown')
                                           menu.style.display = 'none'
                                         }}>Menu</NavLink>
+                                      </li>}
+
+                    {auth.userToken && <li className='condensed-dropdown'>
+                                        <NavLink to='/kids-menu' onClick={(e) => {
+                                          const menu = document.getElementsByClassName('condensed-dropdown')
+                                          menu.style.display = 'none'
+                                        }}>Kids Menu</NavLink>
                                       </li>}
                     
                     {auth.userToken && <li className='condensed-dropdown'>

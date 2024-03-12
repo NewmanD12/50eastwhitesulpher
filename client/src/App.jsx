@@ -16,6 +16,7 @@ import AdminPage from './Pages/AdminPage'
 import CreateNewUser from './Pages/CreateNewUser'
 import CreateNewFarmer from './Pages/CreateNewFarmer'
 import TastingRoom from './Pages/TastingRoom'
+import KidsMenu from './Pages/KidsMenu'
 
 function App() {
 
@@ -62,6 +63,14 @@ function App() {
                       menuItems={menuItems}
                       currentMenu={currentMenu}
                       setCurrentMenu={setCurrentMenu}
+                    />
+        },
+        {
+          path : "/kids-menu",
+          element : <KidsMenu 
+                      currentMenu={currentMenu}
+                      menuItems={menuItems}
+                      menuItemsEndpoint={menuItemsEndpoint}
                     />
         },
         {

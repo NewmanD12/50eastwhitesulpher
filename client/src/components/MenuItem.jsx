@@ -346,6 +346,7 @@ const MenuItem = (props) => {
                                                                     <option value='sandwichesAndPies'>Sandwiches & Pies</option>
                                                                     <option value='sides'>Sides</option>
                                                                     <option value='bowls'>Bowls</option>
+                                                                    <option value='kidsMenu'>Kids Menu</option>
                                                                     <option value='desserts'>Desserts</option>
                                                                     </Form.Select>
                                                                 </Form.Group>
@@ -369,6 +370,7 @@ const MenuItem = (props) => {
                                                                     <option value='comfort'>Comfort</option>
                                                                     <option value='entrees'>Entrees</option>
                                                                     <option value='sides'>Sides</option>
+                                                                    <option value='kidsMenu'>Kids Menu</option>
                                                                     <option value='desserts'>Desserts</option>
                                                                     </Form.Select>
                                                                 </Form.Group>

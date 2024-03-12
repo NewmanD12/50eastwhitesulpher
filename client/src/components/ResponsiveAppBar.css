@@ -69,6 +69,7 @@
     position: relative;
     top: -20px;
     cursor: pointer;
+    left: -15px;
   }
 
   #wide-nav {
@@ -110,10 +111,10 @@
 @media (max-width: 1200px) {
 
     .menu-icon {
-        position: absolute;
-        display: block;
-        left: 80%;
-        top: 20%;
+      position: absolute;
+      display: block;
+      left: 80%;
+      top: 20%;
     }
 
     .condensed-dropdown{
@@ -154,6 +155,8 @@
 
     #hamburger {
       text-align: right;
+      position: relative;
+      right: 20px;
     }
 
     #bar1 {

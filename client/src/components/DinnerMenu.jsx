@@ -8,6 +8,7 @@ import MenuItem from './MenuItem'
 const DinnerMenu = (props) => {
 
     const { menuItems, currentMenu, setCurrentMenu, menuItemsEndpoint } = props
+    const abbrevLegend = 'GF = Gluten Free, V = Vegan, VEG = Vegetarian, DF = Dairy Free, SF = Shellfish'
 
     let dinnerItems = []
     let starters = []
@@ -86,6 +87,7 @@ const DinnerMenu = (props) => {
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='starters-header' className='course-headers'>Starters
                         </h1>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {starters.length >= 1 && starters.map((item, index) => {
@@ -105,6 +107,7 @@ const DinnerMenu = (props) => {
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='app-header' className='course-headers'>Crafted Soups & Salads
                         </h1>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {soupsAndSalads.length >= 1 && soupsAndSalads.map((item, index) => {
@@ -124,6 +127,7 @@ const DinnerMenu = (props) => {
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='sandwiches-and-pies-header' className='course-headers'>Sandwiches & Pies
                         </h1>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {sandwichesAndPies.length >= 1 && sandwichesAndPies.map((item, index) => {
@@ -148,7 +152,8 @@ const DinnerMenu = (props) => {
                 <div id='comforts-div' className='mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='comforts-header' className='course-headers'>Comfort
-                        </h1>                        
+                        </h1> 
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {comfort.length >= 1 && comfort.map((item, index) => {
@@ -168,7 +173,8 @@ const DinnerMenu = (props) => {
                 <div id='entrees-div' className='mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='entrees-header' className='course-headers'>Entrees
-                        </h1>                        
+                        </h1> 
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {entrees.length >= 1 && entrees.map((item, index) => {
@@ -188,7 +194,8 @@ const DinnerMenu = (props) => {
                 <div id='desserts-div' className='mt-3'>
                     <Row className='justify-content-center text-center m-3'>
                         <h1 id='desserts-header' className='course-headers'>Desserts
-                        </h1>                        
+                        </h1>
+                        <h6>{abbrevLegend}</h6>
                     </Row>
                     <Row className='justify-content-center'>
                         {desserts.length >= 1 && desserts.map((item, index) => {
