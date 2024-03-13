@@ -26,10 +26,6 @@ const KidsMenu = (props) => {
         return item
     })
 
-
-    
-    console.log(kidMenuItems)
-
     return (
         <>
             <Container fluid id='kids-menu-body' className='py-5'>

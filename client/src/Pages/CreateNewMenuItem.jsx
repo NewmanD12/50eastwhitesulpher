@@ -21,11 +21,30 @@ const CreateNewMenuItem = (props) => {
   const submitMenuItem = (e) => {
     e.preventDefault()
 
-    const mealPeriodAndPrices = [primaryMealPeriodAndPrice, secondaryMealPeriod]
+    
+    const convertMealPeriodAndPrice = () => {
+      let mealPeriodAndPrices = []
+      if(primaryMealPeriodAndPrice.course === 'kidsMenu'){
+        if(primaryMealPeriodAndPrice.mealPeriod === 'lunch'){
+          mealPeriodAndPrices = [primaryMealPeriodAndPrice, {mealPeriod : 'dinner', course : primaryMealPeriodAndPrice.course, price : primaryMealPeriodAndPrice.price}]
+          
+        }
+        else {
+          mealPeriodAndPrices = [primaryMealPeriodAndPrice, {mealPeriod : 'lunch', course : primaryMealPeriodAndPrice.course, price : primaryMealPeriodAndPrice.price}]
+        }
+      }
+      else {
+        mealPeriodAndPrices = secondaryMealPeriod.mealPeriod ? [primaryMealPeriodAndPrice, secondaryMealPeriod] : [primaryMealPeriodAndPrice]
+      }
+      return mealPeriodAndPrices
+    }
+
+  
+    
 
     const MenuItem = {...newMenuItem,
       "allergyWarnings" : allergyWarnings,
-      "mealPeriodAndPrices" : mealPeriodAndPrices, 
+      "mealPeriodAndPrices" : convertMealPeriodAndPrice(), 
       "subsAndUpcharges" : [firstSubAndUpcharge, secondSubAndUpcharge, thirdSubAndUpcharge, fourthSubAndUpcharge, fifthSubAndUpcharge]
     }
 

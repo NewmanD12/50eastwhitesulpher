@@ -17,13 +17,21 @@ const MenuItem = (props) => {
     
     ///////////////////////////////////////////
     // THIS BLOCK IS FOR FINDING THE MENU PRICE AND CONVERTING THE SUBS INTO A STRING
+
+    let price = ''
+    let course = ''
     
     const mealPeriodAndPrices = item.mealPeriodAndPrices
-    const menuPriceFound = mealPeriodAndPrices.filter((item) => {
-        return item.mealPeriod === currentMenu
-    })
-    const price = menuPriceFound[0].price
-    const course = menuPriceFound[0].course
+    if(currentMenu === 'lunch' || currentMenu === 'dinner'){
+        const menuPriceFound = mealPeriodAndPrices.filter((item) => {
+            return item.mealPeriod === currentMenu
+        })
+        price = menuPriceFound[0].price
+        course = menuPriceFound[0].course
+    }
+    else{
+        console.log('kids menu')
+    }
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
@@ -138,16 +146,52 @@ const MenuItem = (props) => {
 
         const subsAndUpchargesToPass = [firstSubAndUpcharge, secondSubAndUpcharge, thirdSubAndUpcharge, fourthSubAndUpcharge, fifthSubAndUpcharge]
 
+        const createMealPeriodAndPrices = () => {
+            let mealPeriodAndPrices = []
+            if(item.mealPeriodAndPrices[0].course === 'kidsMenu'){
+                if(currentMenu === 'lunch'){
+                    mealPeriodAndPrices = [{
+                        mealPeriod : currentMenu, 
+                        course : 'kidsMenu',
+                        price : editedMenuItem.price ? editedMenuItem.price : price
+                    }, 
+                    {
+                        mealPeriod : 'dinner', 
+                        course : 'kidsMenu',
+                        price : editedMenuItem.price ? editedMenuItem.price : price
+                    }]
+                }
+                else {
+                    mealPeriodAndPrices = [{
+                        mealPeriod : 'dinner', 
+                        course : 'kidsMenu',
+                        price : editedMenuItem.price ? editedMenuItem.price : price
+                    },
+                    {
+                        mealPeriod : currentMenu, 
+                        course : 'kidsMenu',
+                        price : editedMenuItem.price ? editedMenuItem.price : price 
+                    }]
+                }
+            }
+            else {
+                mealPeriodAndPrices = [{
+                    "mealPeriod" : currentMenu,
+                    "course" : editedMenuItem.course ? editedMenuItem.course : course,
+                    "price" : editedMenuItem.price ? editedMenuItem.price : price
+                }, otherMealPeriodAndPrice[0]]
+            }
+            console.log(item.mealPeriodAndPrices[0].course)
+            // console.log(mealPeriodAndPrices)
+            return mealPeriodAndPrices
+        }
+
         const editedItemToPass = {
             "title" : editedMenuItem.title ? editedMenuItem.title : item.title,
             "description" : editedMenuItem.description ? editedMenuItem.description : item.description,
             "restaurant" : item.restaurant,
             "allergyWarnings" : allergyWarnings.length > 1 ? allergyWarnings : item.allergyWarnings,
-            "mealPeriodAndPrices" : [{
-                "mealPeriod" : currentMenu,
-                "course" : editedMenuItem.course ? editedMenuItem.course : course,
-                "price" : editedMenuItem.price ? editedMenuItem.price : price
-            }, otherMealPeriodAndPrice[0]],
+            "mealPeriodAndPrices" : createMealPeriodAndPrices(),
             "subsAndUpcharges" : firstSubAndUpcharge.title ? subsAndUpchargesToPass : item.subsAndUpcharges
         }
 
