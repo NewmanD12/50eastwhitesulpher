@@ -29,9 +29,9 @@ const MenuItem = (props) => {
         price = menuPriceFound[0].price
         course = menuPriceFound[0].course
     }
-    else{
-        console.log('kids menu')
-    }
+
+    // console.log(item)
+
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
@@ -163,7 +163,7 @@ const MenuItem = (props) => {
                 }
                 else {
                     mealPeriodAndPrices = [{
-                        mealPeriod : 'dinner', 
+                        mealPeriod : 'lunch', 
                         course : 'kidsMenu',
                         price : editedMenuItem.price ? editedMenuItem.price : price
                     },
@@ -181,7 +181,7 @@ const MenuItem = (props) => {
                     "price" : editedMenuItem.price ? editedMenuItem.price : price
                 }, otherMealPeriodAndPrice[0]]
             }
-            console.log(item.mealPeriodAndPrices[0].course)
+            // console.log(item.mealPeriodAndPrices[0].course)
             // console.log(mealPeriodAndPrices)
             return mealPeriodAndPrices
         }
@@ -216,7 +216,7 @@ const MenuItem = (props) => {
     }
 
     const handleDelete = (menuItemId) => {
-        console.log(menuItemId)
+        // console.log(menuItemId)
         axios.delete(`${menuItemsEndpoint}/delete-menu-item/${menuItemId}`)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err))
