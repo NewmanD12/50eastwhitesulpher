@@ -12,6 +12,8 @@ const MenuItem = (props) => {
     const { item, currentMenu, menuItemsEndpoint } = props
     const auth = useAuth();
 
+    // console.log(item)
+
 
     const [isEditing, setIsEditing] = useState(false)
     
@@ -35,13 +37,14 @@ const MenuItem = (props) => {
     const subs = item.subsAndUpcharges.filter((sub) => {
         return sub.title
     })
+
     const convertSubs = (listOfSubs) => {
         const lengthOfSubs = listOfSubs.length
         
         let finalSubsAndPrices = ''
         
         if(lengthOfSubs === 1){
-            finalSubsAndPrices = `${listOfSubs[0].title}}`
+            finalSubsAndPrices = `${listOfSubs[0].title} $${listOfSubs[0].price}`
         }
         else if(lengthOfSubs === 2){
             finalSubsAndPrices = `${listOfSubs[0].title} ${listOfSubs[0].price ? `$${listOfSubs[0].price}` : '' } | ${listOfSubs[1].title} ${listOfSubs[1].price ? `$${listOfSubs[1].price}` : '' }`
@@ -105,6 +108,8 @@ const MenuItem = (props) => {
 
     const handleAlleryWarningChange = (e) => {
 
+        // console.log(e.target.name)
+
         if(allergyWarnings.includes(e.target.name)){
     
           const index = allergyWarnings.indexOf(e.target.name)
@@ -129,6 +134,7 @@ const MenuItem = (props) => {
             ...allergyWarnings, e.target.name
           ])
         }
+        // console.log(allergyWarnings)
     }
 
     const handleChange = (e) => {
@@ -186,11 +192,13 @@ const MenuItem = (props) => {
             return mealPeriodAndPrices
         }
 
+
+
         const editedItemToPass = {
             "title" : editedMenuItem.title ? editedMenuItem.title : item.title,
             "description" : editedMenuItem.description ? editedMenuItem.description : item.description,
             "restaurant" : item.restaurant,
-            "allergyWarnings" : allergyWarnings.length > 1 ? allergyWarnings : item.allergyWarnings,
+            "allergyWarnings" : allergyWarnings.length >= 1 ? allergyWarnings : item.allergyWarnings,
             "mealPeriodAndPrices" : createMealPeriodAndPrices(),
             "subsAndUpcharges" : firstSubAndUpcharge.title ? subsAndUpchargesToPass : item.subsAndUpcharges
         }
@@ -531,7 +539,7 @@ const MenuItem = (props) => {
                             </Row>}
           
                             {currentSubLevel >= 5 && <Row className='justify-content-center'>
-                                <Col className='mt-3' xs={5}>
+                                <Col className='my-3' xs={5}>
                                     <Form.Group>
                                         <Form.Control 
                                         type="text" 
