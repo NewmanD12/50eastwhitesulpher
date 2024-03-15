@@ -31,9 +31,9 @@ app.use(cors());
 app.options("*", cors());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/menu-items', menuItemsRouter);
-app.use('/local-farmers', localFarmersRouter)
+app.use('/api/users', usersRouter);
+app.use('/api/menu-items', menuItemsRouter);
+app.use('/api/local-farmers', localFarmersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
